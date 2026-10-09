@@ -1,0 +1,100 @@
+body {
+    background-color: #0b4f6c;
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+nav {
+    background-color: #d90429;
+    padding: 15px;
+}
+
+#nav-title, .nav-button {
+    background-color: #1a153b;
+    border: 1px solid #4a3f8a;
+    border-radius: 5px;
+    padding: 8px 15px;
+    display: inline-block;
+}
+
+#nav-title {
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: inline-block;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+}
+
+main {
+    padding: 30px;
+}
+
+/* Content Area */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center; 
+}
+
+#start-enable {
+    display: none;
+}
+
+.content-box {
+    background-color: #1a153b;
+    border: 3px solid #d90429;
+    border-radius: 20px;
+    width: 800px;
+    height: 500px;
+    position: relative;
+    
+    /* fog effect*/
+    filter: blur(6px);
+    transition: filter 0.3s;
+}
+
+#narrative {
+    background-color: #0b4f6c;
+    border: 2px solid #d90429;
+    border-radius: 15px;
+    width: 740px;
+    height: 80px;
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+}
+
+
+#start-link {
+    position: absolute;
+    margin-top: 230px; 
+    z-index: 10;
+    text-decoration: none;
+}
+
+.start-button {
+    background-color: #d90429;
+    border: 2px solid #ef233c;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 30px;
+    cursor: pointer;
+}
+
+/* Hide button and stop fog when button is clicked / checked*/
+#start-enable:checked ~ .content-box {
+    filter: blur(0px);
+}
+
+#start-enable:checked ~ #start-link {
+    display: none;
+}
