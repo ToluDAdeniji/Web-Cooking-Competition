@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cooking Competition show">
+    <title>Home - Cooking Competition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<p>😀</p>
+<body>
+
+    <!-- Website Header -->
+    <header>
+        <nav>
+            <div id="nav-title">Cooking Competition</div>
+
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-link">
+                    <span class="nav-button">Home</span>
+                </a>
+
+                <a href="about.html" class="nav-link">
+                    <span class="nav-button">About</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Page Content -->
+    <main>
+
+        <!-- Cooking Competition Game -->
+        <section class="content-grid" aria-label="Cooking competition game">
+
+            <!-- Scene controls -->
+            <input type="checkbox" id="start-enable">
+            <input type="checkbox" id="scene-two-enable">
+
+            <label for="start-enable" id="start-link" class="start-button">
+                Start
+            </label>
+
+            <!-- Game Display -->
+            <section class="content-box" aria-label="Game scene">
+
+                <!-- Scene One -->
+                <section class="scene-one" aria-label="Introduction">
+
+                    <div class="cat-chef">
+                        <img
+                            src="cat-expressions/neutral.png"
+                            alt="Chef cat with a neutral expression">
+                    </div>
+
+                    <div id="narrative">
+                        Welcome to the cooking competition!
+
+                        <label for="scene-two-enable" class="next-button">
+                            Next
+                        </label>
+                    </div>
+
+                </section>
+
+                <!-- Scene Two -->
+                <section class="scene-two" aria-label="First challenge">
+
+                    <div class="cat-chef">
+                        <img
+                            src="cat-expressions/happy.png"
+                            alt="Chef cat with a happy expression">
+                    </div>
+
+                    <div class="narrative">
+                        Welcome to your first cooking challenge!
+                    </div>
+
+                </section>
+
+            </section>
+        </section>
+
+    </main>
+
+    <!-- Page Footer -->
+    <footer>
+        <p>&copy; 2026 Cooking Competition</p>
+    </footer>
+
+</body>
+</html>
