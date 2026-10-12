@@ -51,7 +51,8 @@ main {
 .content-grid {
     display: grid;
     grid-template-columns: 1fr;
-    justify-items: center; 
+    justify-items: center;
+    position: relative;
 }
 
 #start-enable,
@@ -62,29 +63,75 @@ main {
 #scene-six-enable,
 #scene-seven-enable,
 #scene-eight-enable,
-#scene-nine-enable {
+#scene-nine-enable,
+#game-over-enable {
     display: none;
 }
 
 .content-box {
-    background-image: url(backgrounds/kitchen.png);
-    background-size: cover;
     border: 3px solid #d90429;
     border-radius: 20px;
     width: 800px;
     height: 500px;
     position: relative;
-    
-    /* fog effect*/
-    filter: blur(6px);
-    transition: filter 0.3s;
+    isolation: isolate;
 }
+
+.content-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(backgrounds/kitchen.png);
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px);
+    z-index: -1;
+    border-radius: 17px;
+    transition: filter 0.3s ease;
+}
+
+/*gameover boarder box*/
+.loser-box {
+    border: 3px solid #d90429;
+    border-radius: 20px;
+    width: 800px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.loser-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(backgrounds/homeless.png);
+    background-size: cover;
+    z-index: -1;
+    transition: filter 1 ease;
+}
+
+.loser-box .scene-one {
+    position: absolute;
+    inset: 0;
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
 
 /*hides previous text in dialog box*/
 .scene-one {
     display: block;
 }
 
+.scene-one #narrative,
+.scene-one .walking-cat-chef {
+    filter: blur(6px);
+    transition: filter 0.3s ease;
+}
+
+/*prevents other scenes to collid*/
 .scene-two, 
 .scene-three,
 .scene-four,
@@ -92,7 +139,8 @@ main {
 .scene-six,
 .scene-seven,
 .scene-eight,
-.scene-nine {
+.scene-nine,
+.game-over {
     display: none;
 }
 
@@ -113,6 +161,14 @@ main {
     top: 30px;
 }
 
+.homeless-cat-chef {
+    position: absolute;
+    left: 270px;
+    top: 100px;
+    animation: crying 2s ease-in-out infinite;
+
+}
+
 .sad-cat-chef {
     left: 286px;
     top: 30px;
@@ -122,7 +178,6 @@ main {
 .walking-cat-chef {
     left: 286px;
     top: 30px;
-    animation: walk 3s ease-in-out forwards;
 }
 
 .cat-chef {
@@ -140,6 +195,51 @@ main {
     top: 40px;
     animation: pointing 2s ease-in-out infinite 
 
+}
+
+.text_bubble  img{
+    position: absolute;
+    height: 100px;
+    width: 140px;
+    left: 180px;
+    top: 100px;
+}
+
+.text_bubble p {
+    position: absolute;
+    left: 200px;
+    top: 120px;
+}
+
+.try-again  img{
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    left: 245px;
+    top: -255px;
+    animation: slide 3s ease-in-out forwards
+}
+
+/*Restart Screen fades in*/
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/*gameover logo*/
+@keyframes slide {
+    from {
+        top: -255px
+    }
+
+    to {
+        top: -20px
+    }
 }
 
 /*pointer animation*/
@@ -225,7 +325,9 @@ main {
 
 #start-link {
     position: absolute;
-    margin-top: 230px; 
+    margin-top: 230px;
+    left: 50%;
+    transform: translate(-50%);
     z-index: 10;
     text-decoration: none;
 }
@@ -239,6 +341,7 @@ main {
     font-weight: bold;
     padding: 15px 30px;
     cursor: pointer;
+    transition: opacity 0.3s ease;
 }
 
 .next-button {
@@ -288,17 +391,35 @@ main {
     transition: background-color 0.3s, transform 0.3s;
 }
 
+.try-again .next-button-nav {
+    position: absolute;
+    left: 340px;
+    top: 330px;
+    opacity: 0;
+    animation: fadein 1s ease-in-out 1.5s forwards;
+}
+
 footer{
     text-align: center;
 }
 
+/*index page*/
 /* Hide button and stop fog when button is clicked / checked*/
-#start-enable:checked ~ .content-box {
-    filter: blur(0px);
+#start-enable:checked ~ .content-box .scene-one  #narrative,
+ #start-enable:checked ~ .content-box .scene-one  .walking-cat-chef{
+    filter: blur(0);
+}
+
+#start-enable:checked ~ .content-box::before {
+    filter: blur(0);
 }
 
 #start-enable:checked ~ #start-link {
     display: none;
+}
+
+#start-enable:checked ~ .content-box .walking-cat-chef {
+    animation: walk 3s ease-in-out forwards;
 }
 
 /* changing scenes (I did try to put them all in one but it didn't work*/
@@ -364,4 +485,23 @@ footer{
 
 #scene-nine-enable:checked ~ .content-box .scene-nine{
     display: block;
+}
+
+/*Gameover page */
+
+#game-over-enable:checked ~ .loser-box .scene-one {
+    display: none;
+}
+
+#game-over-enable:checked ~.loser-box .game-over {
+    display: block;
+}
+
+#game-over-enable:checked ~ .loser-box::before {
+    filter: blur(8px);
+}
+
+#game-over-enable:checked ~ .loser-box .game-over .homeless-cat-chef {
+    filter: blur(3px);
+    transition: filter 1s ease;
 }
