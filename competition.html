@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Cooking Competition Game">
+	<title>Cooking Competition - Restaurant Rescue</title>
+	<link rel="stylesheet" href="ingredients.css">
+</head>
+<body class="body">
+    <!--header/Navigation Bar-->
+    <header>
+        <nav>
+          <h1 id="nav-title">Restaurant Rescue</h1>
+           
+          <div class="nav-buttons">
+              <!--Home Button-->
+              <a href="index.html" class="nav-link">
+                 <div class="nav-button">Home</div>
+              </a>
+
+               <!--About Us Button-->
+               <a href="about.html" class="nav-link">
+                 <div class="nav-button">About Us</div>
+               </a>      
+            </div>
+        </nav>
+    </header>
+    
+<!--Main Content Section-->
+	<main>
+        <section class="content-grid" aria-label="Cooking competition game">
+            
+            <!-- Hidden checkboxes for scene control -->
+            <input type="checkbox" id="scene-two-enable">
+            <input type="checkbox" id="scene-three-enable">
+            <input type="checkbox" id="scene-four-enable">
+
+            <!-- Side-by-Side Wrapper holding Content Box and Recipe Box -->
+            <div class="game-layout">
+
+                <!-- Main Content Box -->
+                <div class="content-box">
+                    
+                    <div class="scene-one">
+                        <!-- Left Character: Cat -->
+                        <div class="cat-chef">
+                          <img src="cat-expressions/neutral.png" alt="Chef Pocket ready">
+                        </div>
+                        <!-- Right Character: Pig Host -->
+                        <div class="pig-host">
+                          <img src="pig-expressions/neutral.png" alt="Gordon Hamsey the Host">
+                        </div>
+                     
+                       <div id="narrative">
+                           <label for="scene-two-enable" class="next-button">Next</label>
+                           <p>Welcome to the competition! My name is Gordon Hamsey. I'm the greatest chef in the world!</p>
+                       </div>
+                    </div>
+
+                    <div class="scene-two">
+                        <div class="cat-chef">
+                            <img src="cat-expressions/happy.png" alt="Happy cat">
+                        </div>
+                        <div class="pig-host">
+                            <img src="pig-expressions/neutral.png" alt="Gordon Hamsey">
+                        </div>
+
+                        <div class="narrative">
+                            <label for="scene-three-enable" class="next-button">Next</label>
+                            <p>Today, you'll be competing to see if you have what it takes to stand among the best chefs in the world. I'm sorry to say this, but you're going to fail.</p> 
+                        </div>
+                    </div>
+
+                    <div class="scene-three">
+                        <div class="cat-chef">
+                            <img src="cat-expressions/say-what.png" alt="Cooking action">
+                        </div>
+                        <div class="pig-host">
+                            <img src="pig-expressions/neutral.png" alt="Gordon Hamsey">
+                        </div>
+
+                        <div class="narrative">
+                            <label for="scene-four-enable" class="next-button">Next</label>
+                            <p>Select the appropriate ingredients based on the recipe you brought with you. Don't mess this up!</p>
+                        </div>
+                    </div>
+
+                    <div class="scene-four">
+                        <!-- Root-level finish checkbox -->
+                        <input type="checkbox" id="finish-game" class="finish-checkbox">
+
+                        <!-- Cat centered during gameplay -->
+                        <div class="cat-chef-centered">
+                            <img src="cat-expressions/happy.png" alt="Ready stage">
+                        </div>
+
+                        <!-- Cat returns to left position when finished -->
+                        <div class="cat-chef-returning">
+                            <img src="cat-expressions/neutral.png" alt="Chef Pocket">
+                        </div>
+
+                        <!-- Pig walks back onto screen from the right when finished -->
+                        <div class="pig-walking-back">
+                            <img src="pig-expressions/neutral.png" alt="Gordon Hamsey returns">
+                        </div>
+
+                        <!-- Center Table -->
+                        <div class="center-table">
+                            <img src="items/table.png" alt="Kitchen Table">
+                        </div>
+
+                        <!-- Initial Sliding Narrative Text Box -->
+                        <div class="narrative sliding-narrative">
+                            <p>Click on the items to select them</p>
+                        </div>
+
+                        <!-- Result Narrative Box (Win) -->
+                        <div class="narrative result-box win-box">
+                            <p><strong>Are you making Pig Stew?!</strong> How dare you! You're not going to win this!</p>
+                            <a href="win.html" class="next-button" style="top: 25px; right: 20px;">Continue</a>
+                        </div>
+
+                        <!-- Result Narrative Box (Loss) -->
+                        <div class="narrative result-box loss-box">
+                            <p><strong>Wrong! I knew it!</strong> This is why cats don't bellong in the Kitchen.</p>
+                            <a href="game-over.html" class="next-button" style="top: 25px; right: 20px;">Try Again</a>
+                        </div>
+
+                        <!-- Left Selection Box: Ingredients (With Dummy Items) -->
+                        <div class="sub-box left-slide-box">
+                            <h3>Ingredients</h3>
+                            <div class="food-grid">
+                                <input type="checkbox" id="food-pork" class="food-cb">
+                                <label for="food-pork" class="food-item">
+                                    <img src="items/food.png" alt="Pork">
+                                    <span>Pork</span>
+                                </label>
+
+                                <input type="checkbox" id="food-bacon" class="food-cb">
+                                <label for="food-bacon" class="food-item">
+                                    <img src="items/food.png" alt="Bacon">
+                                    <span>Bacon</span>
+                                </label>
+
+                                <input type="checkbox" id="food-carrots" class="food-cb">
+                                <label for="food-carrots" class="food-item">
+                                    <img src="items/food.png" alt="Carrots">
+                                    <span>Carrots</span>
+                                </label>
+
+                                <input type="checkbox" id="food-broth" class="food-cb">
+                                <label for="food-broth" class="food-item">
+                                    <img src="items/food.png" alt="Broth">
+                                    <span>Broth</span>
+                                </label>
+
+                                <input type="checkbox" id="food-potatoes" class="food-cb wrong-item">
+                                <label for="food-potatoes" class="food-item">
+                                    <img src="items/food.png" alt="Potatoes">
+                                    <span>Potatoes</span>
+                                </label>
+
+                                <input type="checkbox" id="food-onions" class="food-cb wrong-item">
+                                <label for="food-onions" class="food-item">
+                                    <img src="items/food.png" alt="Onions">
+                                    <span>Onions</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Right Selection Box: Seasonings (With Dummy Items) -->
+                        <div class="sub-box right-slide-box">
+                            <h3>Seasonings</h3>
+                            <div class="food-grid">
+                                <input type="checkbox" id="food-paprika" class="food-cb">
+                                <label for="food-paprika" class="food-item">
+                                    <img src="items/food.png" alt="Paprika">
+                                    <span>Paprika</span>
+                                </label>
+
+                                <input type="checkbox" id="food-garlic" class="food-cb">
+                                <label for="food-garlic" class="food-item">
+                                    <img src="items/food.png" alt="Garlic">
+                                    <span>Garlic</span>
+                                </label>
+
+                                <input type="checkbox" id="food-onion-powder" class="food-cb wrong-item">
+                                <label for="food-onion-powder" class="food-item">
+                                    <img src="items/food.png" alt="Onion Powder">
+                                    <span>Onion Pwd</span>
+                                </label>
+
+                                <input type="checkbox" id="food-pepper" class="food-cb wrong-item">
+                                <label for="food-pepper" class="food-item">
+                                    <img src="items/food.png" alt="Pepper">
+                                    <span>Pepper</span>
+                                </label>
+
+                                <input type="checkbox" id="food-wrong" class="food-cb wrong-item">
+                                <label for="food-wrong" class="food-item">
+                                    <img src="items/food.png" alt="Mud">
+                                    <span>Mud</span>
+                                </label>
+                            </div>
+                            
+                            <!-- Finish Button Label -->
+                            <label for="finish-game" class="finish-btn">Finish</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Recipe Box -->
+                <div class="content-box recipe-box">
+                    <div class="recipe-container-inner">
+                        <h2>Recipe Box</h2>
+                        <hr class="recipe-divider">
+                        
+                        <div class="recipe-content-area">
+                            <h3>Current Recipe: <span class="highlight">Pig Stew</span></h3>
+                            <p class="recipe-instruction">Required Ingredients:</p>
+                            
+                            <ul class="recipe-list">
+                                <li>Pork Shoulder</li>
+                                <li>Diced Bacon</li>
+                                <li>Carrots</li>
+                                <li>Beef Broth</li>
+                                <li>Smoked Paprika</li>
+                                <li>Garlic Powder</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+	</main>
+
+    <footer>
+        <p>&copy; Restaurant Rescue 2026</p>
+    </footer>
+</body>
+</html>

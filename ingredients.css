@@ -1,0 +1,532 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background-color: #0b4f6c;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+nav {
+    background-color: #d90429;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#nav-title, .nav-button {
+    background-color: #1a153b;
+    border: 1px solid #4a3f8a;
+    border-radius: 5px;
+    padding: 8px 15px;
+    display: inline-block;
+}
+
+#nav-title {
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    display: inline-block;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    margin-left: 0px;
+}
+
+main {
+    padding: 30px;
+}
+
+/* Content Area & Side-by-Side Layout */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    position: relative;
+}
+
+.game-layout {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#scene-two-enable,
+#scene-three-enable,
+#scene-four-enable,
+.finish-checkbox,
+.food-cb {
+    display: none;
+}
+
+.content-box {
+    border: 3px solid #d90429;
+    border-radius: 20px;
+    width: 800px;
+    height: 500px;
+    position: relative;
+    isolation: isolate;
+    background-color: #0b4f6c;
+    overflow: hidden;
+}
+
+.content-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(backgrounds/stage.png);
+    background-size: cover;
+    background-position: center;
+    filter: blur(0px);
+    z-index: -1;
+    border-radius: 17px;
+}
+
+/* Recipe Box Customization */
+.recipe-box {
+    width: 350px;
+    background-color: #0b4f6c;
+}
+
+.recipe-box::before {
+    background-image: none;
+}
+
+.recipe-container-inner {
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+}
+
+.recipe-box h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+}
+
+.recipe-divider {
+    border: none;
+    height: 2px;
+    background-color: #d90429;
+    margin: 15px 0;
+}
+
+.recipe-content-area {
+    color: white;
+}
+
+.recipe-content-area h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.recipe-content-area .highlight {
+    color: #ef233c;
+}
+
+.recipe-instruction {
+    font-size: 15px;
+    font-style: italic;
+    color: #dfdfdf;
+    margin-bottom: 15px;
+}
+
+.recipe-list {
+    padding-left: 20px;
+    line-height: 1.8;
+}
+
+.recipe-list li {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+/* Scene visibility control */
+.scene-one,
+.scene-two,
+.scene-three,
+.scene-four {
+    display: none;
+}
+
+.scene-one {
+    display: block;
+}
+
+/* Character Positioning & Sizing */
+.cat-chef,
+.pig-host {
+    position: absolute;
+    top: 130px;
+}
+
+.cat-chef {
+    left: 100px;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.pig-host {
+    right: 100px;
+    animation: sway 2s ease-in-out infinite;
+}
+
+.cat-chef img,
+.pig-host img {
+    max-height: 170px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Scene Four Specific Animations & Positioning */
+.cat-chef-centered {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.cat-chef-centered img {
+    max-height: 110px;
+    width: auto;
+}
+
+/* Cat moving back to original left standing position upon finish */
+.cat-chef-returning {
+    position: absolute;
+    top: 130px;
+    left: 100px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cat-chef-returning img {
+    max-height: 170px;
+    width: auto;
+}
+
+/* Pig walking back onto screen from the right when finished */
+.pig-walking-back {
+    position: absolute;
+    top: 130px;
+    right: -250px;
+    opacity: 0;
+}
+
+.pig-walking-back img {
+    max-height: 170px;
+    width: auto;
+}
+
+/* Trigger returning characters when Finish is clicked */
+#finish-game:checked ~ .cat-chef-centered {
+    display: none;
+}
+
+#finish-game:checked ~ .cat-chef-returning {
+    opacity: 1;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+#finish-game:checked ~ .pig-walking-back {
+    opacity: 1;
+    animation: pig-walk-in 1s ease-in-out forwards;
+}
+
+@keyframes pig-walk-in {
+    0% { right: -250px; opacity: 0; }
+    100% { right: 100px; opacity: 1; animation: sway 2s ease-in-out infinite; }
+}
+
+@keyframes pig-walk-off {
+    0% { right: 100px; opacity: 1; }
+    100% { right: -250px; opacity: 0; }
+}
+
+/* Center Table in Scene Four */
+.center-table {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    animation: fade-in-table 0.5s ease-in-out forwards;
+}
+
+.center-table img {
+    max-width: 320px;
+    height: auto;
+    display: block;
+}
+
+@keyframes fade-in-table {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Sliding Narrative Text Box */
+#narrative,
+.narrative {
+    background-color: #0b4f6c;
+    border: 2px solid #d90429;
+    border-radius: 15px;
+    box-sizing: border-box;
+    width: 740px;
+    height: 80px;
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    z-index: 2;
+    text-align: center;
+    padding-top: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.sliding-narrative {
+    animation: slide-out-bottom 0.5s ease-in-out forwards;
+}
+
+@keyframes slide-out-bottom {
+    0% { bottom: 20px; opacity: 1; }
+    100% { bottom: -100px; opacity: 0; }
+}
+
+/* Result Narrative Boxes */
+.result-box {
+    display: none;
+    bottom: 20px;
+    animation: slide-in-bottom 0.5s ease-in-out forwards;
+    z-index: 10;
+}
+
+@keyframes slide-in-bottom {
+    0% { bottom: -100px; opacity: 0; }
+    100% { bottom: 20px; opacity: 1; }
+}
+
+/* Side Sub-Boxes */
+.sub-box {
+    position: absolute;
+    top: 110px;
+    width: 190px;
+    height: 360px;
+    background-color: #0b4f6c;
+    border: 3px solid #d90429;
+    border-radius: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 3;
+    color: white;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    overflow-y: auto;
+}
+
+.left-slide-box {
+    left: -250px;
+    animation: slide-in-left 0.6s ease-in-out 0.3s forwards;
+}
+
+.right-slide-box {
+    right: -250px;
+    animation: slide-in-right 0.6s ease-in-out 0.3s forwards;
+}
+
+@keyframes slide-in-left {
+    0% { left: -250px; }
+    100% { left: 20px; }
+}
+
+@keyframes slide-in-right {
+    0% { right: -250px; }
+    100% { right: 20px; }
+}
+
+.sub-box h3 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 14px;
+    color: #ef233c;
+    border-bottom: 2px solid #d90429;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+}
+
+/* 2-Column Food Grid */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    text-align: center;
+}
+
+.food-item {
+    background-color: #15384e;
+    border: 1px solid #d90429;
+    border-radius: 8px;
+    padding: 4px;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.food-item:hover {
+    background-color: #204c68;
+    transform: scale(1.05);
+}
+
+.food-item img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 2px auto;
+}
+
+.food-item span {
+    font-size: 10px;
+    display: block;
+    color: #fff;
+}
+
+/* FADE AWAY ANIMATION: When food checkbox is checked, hide its label instantly */
+.food-cb:checked + .food-item {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Finish Button Styling */
+.finish-btn {
+    background-color: #d90429;
+    border: 1px solid #ef233c;
+    border-radius: 8px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+    transition: background-color 0.3s;
+}
+
+.finish-btn:hover {
+    background-color: #de6472;
+}
+
+/* WIN/LOSS LOGIC */
+
+/* When finish button is checked, hide both side boxes */
+#finish-game:checked ~ .sub-box,
+#finish-game:checked ~ .left-slide-box,
+#finish-game:checked ~ .right-slide-box {
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Default to WIN State when finished, UNLESS any wrong item is checked */
+#finish-game:checked ~ .win-box {
+    display: block;
+}
+
+#finish-game:checked ~ .loss-box {
+    display: none;
+}
+
+/* LOSS State: Triggered if ANY wrong item is checked and finish is clicked */
+body:has(.wrong-item:checked) #finish-game:checked ~ .loss-box {
+    display: block;
+}
+
+body:has(.wrong-item:checked) #finish-game:checked ~ .win-box {
+    display: none;
+}
+
+/* Position Next Button in the Top Right of the Narrative Box */
+.next-button {
+    background-color: #d90429;
+    border: 1px solid #ef233c;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 4px 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: -12px;
+    z-index: 4;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.next-button:hover {
+    background-color: #de6472;
+    transform: scale(1.05);
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes sway {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(2deg);
+    }
+}
+
+/* Checkbox Scene Switchers */
+#scene-two-enable:checked ~ .game-layout .content-box .scene-one {
+    display: none;
+}
+#scene-two-enable:checked ~ .game-layout .content-box .scene-two {
+    display: block;
+}
+
+#scene-three-enable:checked ~ .game-layout .content-box .scene-two {
+    display: none;
+}
+#scene-three-enable:checked ~ .game-layout .content-box .scene-three {
+    display: block;
+}
+
+#scene-four-enable:checked ~ .game-layout .content-box .scene-three {
+    display: none;
+}
+#scene-four-enable:checked ~ .game-layout .content-box .scene-four {
+    display: block;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+}
