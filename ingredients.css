@@ -8,7 +8,7 @@ html, body {
 body {
     background-color: #0b4f6c;
     color: white;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', serif;
 }
 
 nav {
@@ -18,7 +18,7 @@ nav {
     box-sizing: border-box;
 }
 
-#nav-title, .nav-button {
+#brand, .menu-btn {
     background-color: #1a153b;
     border: 1px solid #4a3f8a;
     border-radius: 5px;
@@ -26,35 +26,33 @@ nav {
     display: inline-block;
 }
 
-#nav-title {
+#brand {
     font-weight: bold;
 }
 
-.nav-buttons {
-    display: flex;
-    flex-wrap: wrap;
+.menu-row {
     display: inline-block;
 }
 
-.nav-link {
+.menu-anchor {
     text-decoration: none;
     color: white;
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 main {
     padding: 30px;
 }
 
-/* Content Area & Side-by-Side Layout */
-.content-grid {
+/* Main Content*/
+.game-wrap {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
     position: relative;
 }
 
-.game-layout {
+.board {
     display: flex;
     gap: 30px;
     justify-content: center;
@@ -63,15 +61,15 @@ main {
     width: 100%;
 }
 
-#scene-two-enable,
-#scene-three-enable,
-#scene-four-enable,
-.finish-checkbox,
-.food-cb {
+#go-taunt,
+#go-rules,
+#go-cook,
+.plate-done-box,
+.pick-box {
     display: none;
 }
 
-.content-box {
+.stage-box {
     border: 3px solid #d90429;
     border-radius: 20px;
     width: 800px;
@@ -82,205 +80,282 @@ main {
     overflow: hidden;
 }
 
-.content-box::before {
+.stage-box::before {
     content: "";
     position: absolute;
     inset: 0;
     background-image: url(backgrounds/stage.png);
     background-size: cover;
     background-position: center;
-    filter: blur(0px);
     z-index: -1;
     border-radius: 17px;
 }
 
-/* Recipe Box Customization */
-.recipe-box {
+/* Recipe Box*/
+.recipe-card {
     width: 350px;
-    background-color: #0b4f6c;
+    background-color: transparent;
 }
 
-.recipe-box::before {
-    background-image: none;
+.recipe-card::before {
+    background-image: url(backgrounds/recipe.png);
+    background-size: cover;
+    background-position: center;
 }
 
-.recipe-container-inner {
-    padding: 20px;
+.recipe-pad {
+    padding: 26px 20px 20px 20px;
     box-sizing: border-box;
     height: 100%;
     position: relative;
 }
 
-.recipe-box h2 {
+.recipe-card h2 {
     margin-top: 0;
     text-align: center;
     font-size: 24px;
     color: white;
 }
 
-.recipe-divider {
-    border: none;
-    height: 2px;
-    background-color: #d90429;
-    margin: 15px 0;
-}
-
-.recipe-content-area {
+.recipe-body {
     color: white;
+    padding-left: 15px;
 }
 
-.recipe-content-area h3 {
+.recipe-body h3 {
     font-size: 17px;
     margin-bottom: 10px;
 }
 
-.recipe-content-area .highlight {
-    color: #ef233c;
+.recipe-body .accent {
+    color: #EF233C;
 }
 
-.recipe-instruction {
+.recipe-sub {
     font-size: 15px;
     font-style: italic;
     color: #dfdfdf;
     margin-bottom: 15px;
 }
 
-.recipe-list {
+.recipe-items {
     padding-left: 20px;
     line-height: 1.8;
 }
 
-.recipe-list li {
+.recipe-items li {
     font-size: 15px;
     margin-bottom: 5px;
 }
 
 /* Scene visibility control */
-.scene-one,
-.scene-two,
-.scene-three,
-.scene-four {
+.welcome-scene,
+.taunt-scene,
+.rules-scene,
+.cook-scene {
     display: none;
 }
 
-.scene-one {
+.welcome-scene {
     display: block;
 }
 
-/* Character Positioning & Sizing */
-.cat-chef,
-.pig-host {
+.chef-cat,
+.host-pig {
     position: absolute;
     top: 130px;
 }
 
-.cat-chef {
+.chef-cat {
     left: 100px;
-    animation: bounce 1s ease-in-out infinite;
+    animation: hop 1s ease-in-out infinite;
 }
 
-.pig-host {
+.host-pig {
     right: 100px;
     animation: sway 2s ease-in-out infinite;
 }
 
-.cat-chef img,
-.pig-host img {
+.chef-cat img,
+.host-pig img {
     max-height: 170px;
     width: auto;
     object-fit: contain;
 }
 
-/* Scene Four Specific Animations & Positioning */
-.cat-chef-centered {
+/* Chef above the table while choosing ingredients */
+.chef-top {
     position: absolute;
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    animation: bounce 1s ease-in-out infinite;
+    animation: hop 1s ease-in-out infinite;
 }
 
-.cat-chef-centered img {
+.chef-top img {
     max-height: 110px;
     width: auto;
 }
 
-/* Cat moving back to original left standing position upon finish */
-.cat-chef-returning {
+/* Characters return after Finish */
+
+.chef-back {
     position: absolute;
     top: 130px;
     left: 100px;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease;
 }
 
-.cat-chef-returning img {
+.chef-back img {
     max-height: 170px;
     width: auto;
 }
 
-/* Pig walking back onto screen from the right when finished */
-.pig-walking-back {
+.host-return {
     position: absolute;
     top: 130px;
     right: -250px;
     opacity: 0;
 }
 
-.pig-walking-back img {
+.host-return img {
     max-height: 170px;
     width: auto;
 }
 
-/* Trigger returning characters when Finish is clicked */
-#finish-game:checked ~ .cat-chef-centered {
+#plate-done:checked ~ .chef-top {
     display: none;
 }
 
-#finish-game:checked ~ .cat-chef-returning {
+#plate-done:checked ~ .chef-back {
     opacity: 1;
-    animation: bounce 1s ease-in-out infinite;
+    animation: hop 1s ease-in-out infinite;
 }
 
-#finish-game:checked ~ .pig-walking-back {
+#plate-done:checked ~ .host-return {
     opacity: 1;
-    animation: pig-walk-in 1s ease-in-out forwards;
+    animation: hog-arrive 1s ease-in-out forwards, sway 2s ease-in-out 1s infinite;
 }
 
-@keyframes pig-walk-in {
+@keyframes hog-arrive {
     0% { right: -250px; opacity: 0; }
-    100% { right: 100px; opacity: 1; animation: sway 2s ease-in-out infinite; }
+    100% { right: 100px; opacity: 1; }
 }
 
-@keyframes pig-walk-off {
-    0% { right: 100px; opacity: 1; }
-    100% { right: -250px; opacity: 0; }
-}
-
-/* Center Table in Scene Four */
-.center-table {
+/* Win and Loss Animations*/
+.result-flash {
     position: absolute;
-    bottom: 0px;
+    inset: 0;
+    z-index: 20;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 17px;
+    pointer-events: none;
+}
+
+.flash-word {
+    font-size: 54px;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.flash-good {
+    background-color: rgba(40, 167, 69, 0.85);
+}
+
+.flash-bad {
+    background-color: rgba(217, 4, 41, 0.85);
+}
+
+@keyframes flashfade {
+    0% { opacity: 0; transform: scale(0.8); }
+    20% { opacity: 1; transform: scale(1.1); }
+    80% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.05); }
+}
+
+#plate-done:checked ~ .flash-bad {
+    display: flex;
+    animation: flashfade 1.2s ease-in-out forwards;
+}
+
+/* All recipe items must be selected, with no extra ingredients. */
+.cook-scene:has(#plate-done:checked):not(:has(.required-pick:not(:checked), .bad-pick:checked)) .flash-good {
+    display: flex;
+    animation: flashfade 1.2s ease-in-out forwards;
+}
+
+.cook-scene:has(#plate-done:checked):not(:has(.required-pick:not(:checked), .bad-pick:checked)) .flash-bad {
+    display: none;
+}
+
+.table-wrap {
+    position: absolute;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
-    animation: fade-in-table 0.5s ease-in-out forwards;
+    animation: table-appear 0.5s ease-in-out forwards;
 }
 
-.center-table img {
+.table-photo {
     max-width: 320px;
     height: auto;
     display: block;
 }
 
-@keyframes fade-in-table {
+.tbl-thing {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 3;
+}
+
+.table-pork { bottom: 75px; left: 90px; }
+body:has(#pick-pork:checked) .table-pork { opacity: 1; }
+
+.table-bacon { bottom: 85px; left: 120px; }
+body:has(#pick-bacon:checked) .table-bacon { opacity: 1; }
+
+.table-carrots { bottom: 75px; left: 150px; }
+body:has(#pick-carrots:checked) .table-carrots { opacity: 1; }
+
+.table-broth { bottom: 90px; left: 180px; }
+body:has(#pick-broth:checked) .table-broth { opacity: 1; }
+
+.table-potatoes { bottom: 75px; left: 210px; }
+body:has(#pick-potatoes:checked) .table-potatoes { opacity: 1; }
+
+.table-onions { bottom: 85px; left: 65px; }
+body:has(#pick-onions:checked) .table-onions { opacity: 1; }
+
+.table-paprika { bottom: 105px; left: 100px; }
+body:has(#pick-paprika:checked) .table-paprika { opacity: 1; }
+
+.table-garlic { bottom: 105px; left: 140px; }
+body:has(#pick-garlic:checked) .table-garlic { opacity: 1; }
+
+.table-onion-powder { bottom: 105px; left: 180px; }
+body:has(#pick-onion-powder:checked) .table-onion-powder { opacity: 1; }
+
+.table-pepper { bottom: 100px; left: 220px; }
+body:has(#pick-pepper:checked) .table-pepper { opacity: 1; }
+
+.table-wrong { bottom: 80px; left: 130px; }
+body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
+
+@keyframes table-appear {
     0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
     100% { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* Sliding Narrative Text Box */
-#narrative,
-.narrative {
+.dialog {
     background-color: #0b4f6c;
     border: 2px solid #d90429;
     border-radius: 15px;
@@ -291,13 +366,22 @@ main {
     bottom: 20px;
     left: 30px;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding-top: 25px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px;
 }
 
-.sliding-narrative {
+.dialog p {
+    margin: 0;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.dialog-slide {
     animation: slide-out-bottom 0.5s ease-in-out forwards;
 }
 
@@ -306,11 +390,11 @@ main {
     100% { bottom: -100px; opacity: 0; }
 }
 
-/* Result Narrative Boxes */
-.result-box {
+/* Result dialog */
+.verdict {
     display: none;
     bottom: 20px;
-    animation: slide-in-bottom 0.5s ease-in-out forwards;
+    animation: slide-in-bottom 0.5s ease-in-out 0.8s forwards;
     z-index: 10;
 }
 
@@ -319,8 +403,7 @@ main {
     100% { bottom: 20px; opacity: 1; }
 }
 
-/* Side Sub-Boxes */
-.sub-box {
+.side-panel {
     position: absolute;
     top: 110px;
     width: 190px;
@@ -336,14 +419,14 @@ main {
     overflow-y: auto;
 }
 
-.left-slide-box {
+.panel-left {
     left: -250px;
-    animation: slide-in-left 0.6s ease-in-out 0.3s forwards;
+    animation: slide-in-left 0.6s ease-in-out 0.25s forwards;
 }
 
-.right-slide-box {
+.panel-right {
     right: -250px;
-    animation: slide-in-right 0.6s ease-in-out 0.3s forwards;
+    animation: slide-in-right 0.6s ease-in-out 0.25s forwards;
 }
 
 @keyframes slide-in-left {
@@ -356,66 +439,62 @@ main {
     100% { right: 20px; }
 }
 
-.sub-box h3 {
+.side-panel h3 {
     margin-top: 0;
     text-align: center;
     font-size: 14px;
-    color: #ef233c;
+    color: #EF233C;
     border-bottom: 2px solid #d90429;
     padding-bottom: 4px;
     margin-bottom: 8px;
 }
 
-/* 2-Column Food Grid */
-.food-grid {
+/* Food Grid*/
+.pantry-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
+    gap: 8px;
     text-align: center;
 }
 
-.food-item {
+.pantry-slot {
     background-color: #15384e;
     border: 1px solid #d90429;
     border-radius: 8px;
-    padding: 4px;
+    aspect-ratio: 1 / 1;
     cursor: pointer;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
+    padding: 6px;
+    box-sizing: border-box;
     transition: transform 0.2s;
 }
 
-.food-item:hover {
+.pantry-slot:hover {
     background-color: #204c68;
     transform: scale(1.05);
 }
 
-.food-item img {
-    width: 26px;
-    height: 26px;
+.pantry-slot img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     display: block;
-    margin: 0 auto 2px auto;
 }
 
-.food-item span {
-    font-size: 10px;
-    display: block;
-    color: #fff;
-}
-
-/* FADE AWAY ANIMATION: When food checkbox is checked, hide its label instantly */
-.food-cb:checked + .food-item {
+.pick-box:checked + .pantry-slot {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease;
 }
 
-/* Finish Button Styling */
-.finish-btn {
+/* Finish Button*/
+.serve-btn {
     background-color: #d90429;
-    border: 1px solid #ef233c;
+    border: 1px solid #EF233C;
     border-radius: 8px;
     color: white;
     font-size: 12px;
@@ -427,47 +506,39 @@ main {
     text-decoration: none;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 8px;
-    transition: background-color 0.3s;
+    margin-top: 12px;
+    transition: background-color 0.25s;
 }
 
-.finish-btn:hover {
+.serve-btn:hover {
     background-color: #de6472;
 }
 
-/* WIN/LOSS LOGIC */
-
-/* When finish button is checked, hide both side boxes */
-#finish-game:checked ~ .sub-box,
-#finish-game:checked ~ .left-slide-box,
-#finish-game:checked ~ .right-slide-box {
+#plate-done:checked ~ .side-panel {
     transform: scale(0);
     opacity: 0;
     pointer-events: none;
 }
 
-/* Default to WIN State when finished, UNLESS any wrong item is checked */
-#finish-game:checked ~ .win-box {
+#plate-done:checked ~ .verdict-lose {
     display: block;
 }
 
-#finish-game:checked ~ .loss-box {
+#plate-done:checked ~ .verdict-win {
     display: none;
 }
 
-/* LOSS State: Triggered if ANY wrong item is checked and finish is clicked */
-body:has(.wrong-item:checked) #finish-game:checked ~ .loss-box {
+.cook-scene:has(#plate-done:checked):not(:has(.required-pick:not(:checked), .bad-pick:checked)) .verdict-win {
     display: block;
 }
 
-body:has(.wrong-item:checked) #finish-game:checked ~ .win-box {
+.cook-scene:has(#plate-done:checked):not(:has(.required-pick:not(:checked), .bad-pick:checked)) .verdict-lose {
     display: none;
 }
 
-/* Position Next Button in the Top Right of the Narrative Box */
-.next-button {
+.go-btn {
     background-color: #d90429;
-    border: 1px solid #ef233c;
+    border: 1px solid #EF233C;
     border-radius: 8px;
     color: white;
     font-size: 13px;
@@ -478,15 +549,15 @@ body:has(.wrong-item:checked) #finish-game:checked ~ .win-box {
     right: 15px;
     top: -12px;
     z-index: 4;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 0.25s, transform 0.25s;
 }
 
-.next-button:hover {
+.go-btn:hover {
     background-color: #de6472;
     transform: scale(1.05);
 }
 
-@keyframes bounce {
+@keyframes hop {
     0%, 100% {
         transform: translateY(0);
     }
@@ -504,29 +575,56 @@ body:has(.wrong-item:checked) #finish-game:checked ~ .win-box {
     }
 }
 
-/* Checkbox Scene Switchers */
-#scene-two-enable:checked ~ .game-layout .content-box .scene-one {
+/* Each Next label checks the box for the following scene. */
+
+#go-taunt:checked ~ .board .stage-box .welcome-scene {
     display: none;
 }
-#scene-two-enable:checked ~ .game-layout .content-box .scene-two {
+#go-taunt:checked ~ .board .stage-box .taunt-scene {
     display: block;
 }
 
-#scene-three-enable:checked ~ .game-layout .content-box .scene-two {
+#go-rules:checked ~ .board .stage-box .taunt-scene {
     display: none;
 }
-#scene-three-enable:checked ~ .game-layout .content-box .scene-three {
+#go-rules:checked ~ .board .stage-box .rules-scene {
     display: block;
 }
 
-#scene-four-enable:checked ~ .game-layout .content-box .scene-three {
+#go-cook:checked ~ .board .stage-box .rules-scene {
     display: none;
 }
-#scene-four-enable:checked ~ .game-layout .content-box .scene-four {
+#go-cook:checked ~ .board .stage-box .cook-scene {
     display: block;
 }
 
 footer {
     text-align: center;
     margin-top: 30px;
+}
+.menu-btn:hover {
+    background-color: #2b2360;
+}
+
+.pantry-slot:focus-visible,
+.serve-btn:focus-visible,
+.go-btn:focus-visible,
+.menu-anchor:focus-visible .menu-btn {
+    outline: 2px solid #ffd166;
+    outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+    main { padding: 12px; }
+    .board { gap: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chef-cat, .host-pig, .chef-top, .chef-back {
+        animation: none;
+    }
+}
+.verdict .go-btn {
+    top: 25px;
+    right: 20px;
 }
