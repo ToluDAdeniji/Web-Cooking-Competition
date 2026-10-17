@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cooking Competition Game">
+    <title>Cooking Competition - Restaurant Rescue</title>
+    <link rel="stylesheet" href="ingredients.css">
+</head>
+<body class="body">
+    <!--Nav-->
+    <header>
+        <nav>
+          <h1 id="brand">Restaurant Rescue</h1>
+
+          <div class="menu-row">
+
+              <a href="index.html" class="menu-anchor">
+                 <div class="menu-btn">Home</div>
+              </a>
+
+               <a href="about.html" class="menu-anchor">
+                 <div class="menu-btn">About Us</div>
+               </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="game-wrap">
+
+            <!-- Scene controls; the Next labels toggle these. -->
+            <input type="checkbox" id="go-taunt">
+            <input type="checkbox" id="go-rules">
+            <input type="checkbox" id="go-cook">
+
+            <!-- Stage and recipe -->
+            <div class="board">
+
+                <!-- Competition stage -->
+                <div class="stage-box">
+
+                    <div class="welcome-scene">
+
+                        <div class="chef-cat">
+                          <img src="cat-expressions/neutral.png" alt="Chef Pocket, ready to cook">
+                        </div>
+
+                        <div class="host-pig">
+                          <img src="pig-expressions/neutral.png" alt="Gordon Hamsey the Host">
+                        </div>
+
+                       <div class="dialog">
+                           <label for="go-taunt" class="go-btn">Next</label>
+                           <p>Welcome to the competition! My name is Gordon Hamsey. I'm the greatest chef in the world!</p>
+                       </div>
+                    </div>
+
+                    <div class="taunt-scene">
+                        <div class="chef-cat">
+                            <img src="cat-expressions/happy.png" alt="Chef Pocket smiling">
+                        </div>
+                        <div class="host-pig">
+                            <img src="pig-expressions/neutral.png" alt="Gordon Hamsey">
+                        </div>
+
+                        <div class="dialog">
+                            <label for="go-rules" class="go-btn">Next</label>
+                            <p>Today, you'll be competing to see if you have what it takes to stand among the best chefs in the world. I'm sorry to say this, but you're going to fail.</p>
+                        </div>
+                    </div>
+
+                    <div class="rules-scene">
+                        <div class="chef-cat">
+                            <img src="cat-expressions/say-what.png" alt="Chef Pocket looking shocked">
+                        </div>
+                        <div class="host-pig">
+                            <img src="pig-expressions/neutral.png" alt="Gordon Hamsey">
+                        </div>
+
+                        <div class="dialog">
+                            <label for="go-cook" class="go-btn">Next</label>
+                            <p>Select the appropriate ingredients based on the recipe you brought with you. Don't mess this up!</p>
+                        </div>
+                    </div>
+
+                    <div class="cook-scene">
+
+                        <input type="checkbox" id="plate-done" class="plate-done-box">
+
+                        <div class="result-flash flash-good">
+                            <span class="flash-word">Success!</span>
+                        </div>
+                        <div class="result-flash flash-bad">
+                            <span class="flash-word">Wrong!</span>
+                        </div>
+
+                        <div class="chef-top">
+                            <img src="cat-expressions/happy.png" alt="Chef Pocket at the stage">
+                        </div>
+
+                        <div class="chef-back">
+                            <img src="cat-expressions/neutral.png" alt="Chef Pocket">
+                        </div>
+
+                        <div class="host-return">
+                            <img src="pig-expressions/angry.png" alt="Gordon Hamsey returns angry">
+                        </div>
+
+                        <div class="table-wrap">
+                            <img src="items/table.png" alt="Kitchen Table" class="table-photo">
+
+                            <img src="Icons/pork.png" alt="Pork on table" class="tbl-thing table-pork">
+                            <img src="Icons/bacon.png" alt="Bacon on table" class="tbl-thing table-bacon">
+                            <img src="Icons/carrots.png" alt="Carrots on table" class="tbl-thing table-carrots">
+                            <img src="Icons/broth.png" alt="Broth on table" class="tbl-thing table-broth">
+                            <img src="Icons/potatoes.png" alt="Potatoes on table" class="tbl-thing table-potatoes">
+                            <img src="Icons/onions.png" alt="Onions on table" class="tbl-thing table-onions">
+                            <img src="Icons/paprika.png" alt="Paprika on table" class="tbl-thing table-paprika">
+                            <img src="Icons/garlic-powder.png" alt="Garlic powder on table" class="tbl-thing table-garlic">
+                            <img src="Icons/onion-powder.png" alt="Onion Powder on table" class="tbl-thing table-onion-powder">
+                            <img src="Icons/pepper.png" alt="Pepper on table" class="tbl-thing table-pepper">
+                            <img src="Icons/mud.png" alt="Mud on table" class="tbl-thing table-wrong">
+                        </div>
+
+                        <div class="dialog dialog-slide">
+                            <p>Click on the items to select them</p>
+                        </div>
+
+                        <div class="dialog verdict verdict-win">
+                            <p><strong>Are you making Pig Stew?!</strong> How dare you! You're not going to win this!</p>
+                            <a href="win.html" class="go-btn">Continue</a>
+                        </div>
+
+                        <div class="dialog verdict verdict-lose">
+                            <p><strong>I knew it!</strong> This is why cats don't belong in the kitchen.</p>
+                            <a href="game-over.html" class="go-btn">Try Again</a>
+                        </div>
+
+                        <!-- Ingredients -->
+                        <div class="side-panel panel-left">
+                            <h3>Ingredients</h3>
+                            <div class="pantry-grid">
+
+                                <input type="checkbox" id="pick-pork" class="pick-box required-pick">
+                                <label for="pick-pork" class="pantry-slot">
+                                    <img src="Icons/pork.png" alt="Pork">
+                                </label>
+
+                                <input type="checkbox" id="pick-bacon" class="pick-box required-pick">
+                                <label for="pick-bacon" class="pantry-slot">
+                                    <img src="Icons/bacon.png" alt="Bacon">
+                                </label>
+
+                                <input type="checkbox" id="pick-carrots" class="pick-box required-pick">
+                                <label for="pick-carrots" class="pantry-slot">
+                                    <img src="Icons/carrots.png" alt="Carrots">
+                                </label>
+
+                                <input type="checkbox" id="pick-broth" class="pick-box required-pick">
+                                <label for="pick-broth" class="pantry-slot">
+                                    <img src="Icons/broth.png" alt="Broth">
+                                </label>
+
+                                <input type="checkbox" id="pick-potatoes" class="pick-box bad-pick">
+                                <label for="pick-potatoes" class="pantry-slot">
+                                    <img src="Icons/potatoes.png" alt="Potatoes">
+                                </label>
+
+                                <input type="checkbox" id="pick-onions" class="pick-box bad-pick">
+                                <label for="pick-onions" class="pantry-slot">
+                                    <img src="Icons/onions.png" alt="Onions">
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Seasonings -->
+                        <div class="side-panel panel-right">
+                            <h3>Seasonings</h3>
+                            <div class="pantry-grid">
+                                <input type="checkbox" id="pick-paprika" class="pick-box required-pick">
+                                <label for="pick-paprika" class="pantry-slot">
+                                    <img src="Icons/paprika.png" alt="Paprika">
+                                </label>
+
+                                <input type="checkbox" id="pick-garlic" class="pick-box required-pick">
+                                <label for="pick-garlic" class="pantry-slot">
+                                    <img src="Icons/garlic-powder.png" alt="Garlic Powder">
+                                </label>
+
+                                <input type="checkbox" id="pick-onion-powder" class="pick-box bad-pick">
+                                <label for="pick-onion-powder" class="pantry-slot">
+                                    <img src="Icons/onion-powder.png" alt="Onion Powder">
+                                </label>
+
+                                <input type="checkbox" id="pick-pepper" class="pick-box bad-pick">
+                                <label for="pick-pepper" class="pantry-slot">
+                                    <img src="Icons/pepper.png" alt="Pepper">
+                                </label>
+
+                                <input type="checkbox" id="pick-wrong" class="pick-box bad-pick">
+                                <label for="pick-wrong" class="pantry-slot">
+                                    <img src="Icons/mud.png" alt="Mud">
+                                </label>
+                            </div>
+
+                            <label for="plate-done" class="serve-btn">Finish</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Recipe  -->
+                <div class="stage-box recipe-card">
+                    <div class="recipe-pad">
+                        <h2>Recipe Box</h2>
+
+                        <div class="recipe-body">
+                            <h3>Current Recipe: <span class="accent">Pig Stew</span></h3>
+                            <p class="recipe-sub">Required Ingredients:</p>
+
+                            <ul class="recipe-items">
+                                <li>Pork Shoulder</li>
+                                <li>Diced Bacon</li>
+                                <li>Carrots</li>
+                                <li>Beef Broth</li>
+                                <li>Smoked Paprika</li>
+                                <li>Garlic Powder</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Restaurant Rescue 2026</p>
+    </footer>
+</body>
+</html>
