@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Cooking Competition show">
+    <title>Win/menu - Cooking Competition</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!--header/Navigation Bar-->
+    <header>
+        <nav>
+          <h1 id="nav-title">Restaurant Rescue</h1>
+           
+          <div class="nav-buttons">
+              <!--Home Button-->
+              <a href="index.html" class="nav-link">
+                 <div class="nav-button">Home</div>
+              </a>
+
+               <!--About Me Button-->
+               <a href="about.html" class="nav-link">
+                 <div class="nav-button">About Us</div>
+               </a>      
+            </div>
+        </nav>
+    </header>
+
+	<main>
+		<div class="content-layout">
+
+		    <section class="content-grid" aria-label="cooking competition">
+
+			  <!--check boxes of Pocket wining and thanking the player for helping safe his resturant and house-->
+			  <input type="checkbox" id="scene-two-enable">
+			  <input type="checkbox" id="game-over-enable">
+
+			  <!--After the player wins you will see a happy cat thanking you for helping them win the game-->
+			    <div class = "winner-box">
+				 
+				 <!--The Anounncer says the Winner is Pocket-->
+				    <div class="scene-one">
+
+					   <div class="victory_cat">
+						  <img src="cat-expressions/victory.png" alt="Pocket with a ribbon">
+					   </div>
+					   
+					   <div class="narrative">
+						  <p>Announcer: <em> The Winner is...<strong>POCKET</strong>!!!!</em></p>
+						  <label for="scene-two-enable" class="next-button">
+							  Next
+						   </label>
+					    </div>
+				    </div>
+
+				    <div class="scene-two">
+					
+					    <!--Pocket wins and does a little dance-->
+					    <div class="cat-chef">
+						   <img src="cat-expressions/victory.png" alt="Pocket Thanks the player for helping them">
+					    </div>
+
+					    <div class="narrative">
+						  <p>Thank everyone, I couldn't of done it without you!</p>
+						  <label for="game-over-enable" class="next-button">
+						      next
+						  </label>
+					    </div>
+				    </div>
+
+				    <div class="game-over">
+
+					   <div class="victory_cat">
+						 <img src="cat-expressions/victory.png" alt="The screen fades to the you win screen">
+					    </div>
+					
+					    <div class="try-again">
+						  <img src="backgrounds/you-win.png" alt="The You win logo slowly descends to the screen">
+
+						   <nav class="next-button-nav">
+							 <a href="index.html">Start Over</a>
+						    </nav>
+					    </div>
+
+					    <div class="narrative">
+						   <p> <strong>CONGRADULATIONS ON BEATING RESTAURANT RESCUE!!</strong></p> 
+						   <p>(As promised, you can have one of Pocket's food items for FREE! Check out Pocket's Menu)</p>
+					    </div>
+				    </div>
+			    </div>
+		    </section>
+
+		    <aside id="pocket_menu">
+				<div class="menu_grid">
+				    <h2>Pocket's Menu Items</h2>
+				
+				    <div class="menu_options">
+
+					   <!--Articles will be use for our card grid-->
+					   <article class="menu_item">
+						 <h3>Pig Stew</h3>
+
+						 <ul menu-info>
+							<li></li>
+						 </ul>
+					    </article>
+				    </div>
+				</div>
+		    </aside>
+		</div>
+
+	</main>
+	
+	<footer>
+		<p>&copy; Restaurant Rescue </p>
+	</footer>
+	
+</body>
+</html>
