@@ -1,19 +1,27 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 body {
     background-color: #0b4f6c;
     color: white;
     font-family: Georgia, 'Times New Roman', serif;
+    display: flex;
+    flex-direction: column;
 }
 
 nav {
     background-color: #d90429;
-    padding: 15px;
+    padding: 12px 15px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -22,8 +30,9 @@ nav {
     background-color: #1a153b;
     border: 1px solid #4a3f8a;
     border-radius: 5px;
-    padding: 8px 15px;
+    padding: 6px 12px;
     display: inline-block;
+    font-size: 14px;
 }
 
 #brand {
@@ -41,7 +50,9 @@ nav {
 }
 
 main {
-    padding: 30px;
+    padding: 10px;
+    width: 100%;
+    flex: 1;
 }
 
 /* Main Content*/
@@ -54,9 +65,9 @@ main {
 
 .board {
     display: flex;
-    gap: 30px;
+    gap: 15px;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch;
     flex-wrap: wrap;
     width: 100%;
 }
@@ -72,7 +83,8 @@ main {
 .stage-box {
     border: 3px solid #d90429;
     border-radius: 20px;
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
     height: 500px;
     position: relative;
     isolation: isolate;
@@ -93,38 +105,51 @@ main {
 
 /* Recipe Box*/
 .recipe-card {
-    width: 350px;
-    background-color: transparent;
+    width: 100%;
+    max-width: 350px;
+    height: 500px;
+    border: 3px solid #d90429;
+    border-radius: 20px;
+    background-color: #0b4f6c;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
 }
 
 .recipe-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
     background-image: url(backgrounds/recipe.png);
     background-size: cover;
     background-position: center;
+    z-index: -1;
+    border-radius: 17px;
 }
 
 .recipe-pad {
-    padding: 26px 20px 20px 20px;
+    padding: 20px 15px 15px;
     box-sizing: border-box;
     height: 100%;
     position: relative;
+    overflow-y: auto;
 }
 
 .recipe-card h2 {
     margin-top: 0;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     color: white;
 }
 
 .recipe-body {
     color: white;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
 .recipe-body h3 {
-    font-size: 17px;
-    margin-bottom: 10px;
+    font-size: 15px;
+    margin-bottom: 8px;
 }
 
 .recipe-body .accent {
@@ -132,20 +157,20 @@ main {
 }
 
 .recipe-sub {
-    font-size: 15px;
+    font-size: 14px;
     font-style: italic;
     color: #dfdfdf;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .recipe-items {
     padding-left: 20px;
-    line-height: 1.8;
+    line-height: 1.6;
 }
 
 .recipe-items li {
-    font-size: 15px;
-    margin-bottom: 5px;
+    font-size: 13px;
+    margin-bottom: 4px;
 }
 
 /* Scene visibility control */
@@ -360,25 +385,26 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
     border: 2px solid #d90429;
     border-radius: 15px;
     box-sizing: border-box;
-    width: 740px;
-    height: 80px;
+    width: calc(100% - 40px);
+    max-width: 740px;
+    height: 65px;
     position: absolute;
-    bottom: 20px;
-    left: 30px;
-    z-index: 2;
+    bottom: 15px;
+    left: 20px;
+    z-index: 6;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .dialog p {
     margin: 0;
     width: 100%;
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 13px;
+    line-height: 1.3;
 }
 
 .dialog-slide {
@@ -386,34 +412,38 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
 }
 
 @keyframes slide-out-bottom {
-    0% { bottom: 20px; opacity: 1; }
+    0% { bottom: 15px; opacity: 1; }
     100% { bottom: -100px; opacity: 0; }
 }
 
 /* Result dialog */
 .verdict {
     display: none;
-    bottom: 20px;
+    bottom: 15px;
     animation: slide-in-bottom 0.5s ease-in-out 0.8s forwards;
     z-index: 10;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 45px 0 15px;
 }
 
 @keyframes slide-in-bottom {
     0% { bottom: -100px; opacity: 0; }
-    100% { bottom: 20px; opacity: 1; }
+    100% { bottom: 15px; opacity: 1; }
 }
 
 .side-panel {
     position: absolute;
-    top: 110px;
+    top: 15px;
     width: 190px;
     height: 360px;
     background-color: #0b4f6c;
     border: 3px solid #d90429;
     border-radius: 15px;
-    padding: 10px;
+    padding: 8px;
     box-sizing: border-box;
-    z-index: 3;
+    z-index: 5;
     color: white;
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     overflow-y: auto;
@@ -431,29 +461,29 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
 
 @keyframes slide-in-left {
     0% { left: -250px; }
-    100% { left: 20px; }
+    100% { left: 15px; }
 }
 
 @keyframes slide-in-right {
     0% { right: -250px; }
-    100% { right: 20px; }
+    100% { right: 15px; }
 }
 
 .side-panel h3 {
     margin-top: 0;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     color: #EF233C;
     border-bottom: 2px solid #d90429;
-    padding-bottom: 4px;
-    margin-bottom: 8px;
+    padding-bottom: 3px;
+    margin-bottom: 6px;
 }
 
 /* Food Grid*/
 .pantry-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 6px;
     text-align: center;
 }
 
@@ -467,7 +497,7 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 6px;
+    padding: 4px;
     box-sizing: border-box;
     transition: transform 0.2s;
 }
@@ -497,16 +527,16 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
     border: 1px solid #EF233C;
     border-radius: 8px;
     color: white;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
-    padding: 5px 10px;
+    padding: 4px 8px;
     cursor: pointer;
     display: block;
     text-align: center;
     text-decoration: none;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 12px;
+    margin-top: 8px;
     transition: background-color 0.25s;
 }
 
@@ -541,20 +571,26 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
     border: 1px solid #EF233C;
     border-radius: 8px;
     color: white;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
-    padding: 4px 10px;
+    padding: 4px 8px;
     cursor: pointer;
     position: absolute;
-    right: 15px;
-    top: -12px;
-    z-index: 4;
+    right: 12px;
+    top: -10px;
+    z-index: 7;
     transition: background-color 0.25s, transform 0.25s;
 }
 
 .go-btn:hover {
     background-color: #de6472;
     transform: scale(1.05);
+}
+
+.verdict .go-btn {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
 }
 
 @keyframes hop {
@@ -600,8 +636,10 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
 
 footer {
     text-align: center;
-    margin-top: 30px;
+    margin: 20px 0;
+    font-size: 13px;
 }
+
 .menu-btn:hover {
     background-color: #2b2360;
 }
@@ -614,17 +652,158 @@ footer {
     outline-offset: 2px;
 }
 
-@media (max-width: 900px) {
-    main { padding: 12px; }
-    .board { gap: 16px; }
+@media (max-width: 850px) {
+    .cook-frame, .stage-box, .recipe-card {
+        height: 380px;
+    }
+    .chef-cat, .host-pig {
+        top: 80px;
+    }
+    .chef-cat img, .host-pig img {
+        max-height: 110px;
+    }
+    .chef-cat { left: 30px; }
+    .host-pig { right: 30px; }
+}
+
+@media (max-width: 480px), (max-height: 660px) {
+    main {
+        padding: 5px;
+    }
+    nav {
+        padding: 8px 10px;
+    }
+    .stage-box, .recipe-card {
+        height: 260px;
+        border-width: 2px;
+        border-radius: 12px;
+    }
+    .chef-cat, .host-pig {
+        top: 45px;
+    }
+    .chef-cat img, .host-pig img {
+        max-height: 70px;
+    }
+    .chef-cat { left: 10px; }
+    .host-pig { right: 10px; }
+    
+    .chef-top {
+        top: 10px;
+    }
+    .chef-top img {
+        max-height: 70px;
+    }
+    
+    .chef-back {
+        top: 45px;
+    }
+    .chef-back img {
+        max-height: 70px;
+    }
+
+    .host-return {
+        top: 45px;
+    }
+    .host-return img {
+        max-height: 70px;
+    }
+
+    .dialog {
+        height: 48px;
+        bottom: 6px;
+        left: 8px;
+        width: calc(100% - 16px);
+        padding: 0 6px;
+    }
+    .dialog p {
+        font-size: 10.5px;
+    }
+    .go-btn {
+        font-size: 9.5px;
+        padding: 2px 5px;
+        top: -7px;
+        right: 6px;
+    }
+    .verdict .go-btn {
+        top: 50%;
+        transform: translateY(-50%);
+        right: 8px;
+        font-size: 9.5px;
+        padding: 2px 5px;
+    }
+
+    .side-panel {
+        top: 10px;
+        width: 140px;
+        height: 180px;
+        padding: 4px;
+    }
+    .side-panel h3 {
+        font-size: 10px;
+        margin-bottom: 4px;
+        padding-bottom: 2px;
+    }
+    .pantry-grid {
+        gap: 3px;
+    }
+    .pantry-slot {
+        padding: 2px;
+    }
+    .serve-btn {
+        font-size: 9px;
+        padding: 2px 4px;
+        margin-top: 4px;
+    }
+
+    @keyframes slide-in-left {
+        0% { left: -150px; }
+        100% { left: 8px; }
+    }
+
+    @keyframes slide-in-right {
+        0% { right: -150px; }
+        100% { right: 8px; }
+    }
+
+    .table-wrap {
+        transform: translateX(-50%) scale(0.65);
+        transform-origin: bottom center;
+        bottom: -20px;
+    }
+    .recipe-pad {
+        padding: 10px 8px;
+    }
+    .recipe-card h2 {
+        font-size: 15px;
+    }
+    .recipe-body h3 {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+    .recipe-sub {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+    .recipe-items li {
+        font-size: 10.5px;
+        margin-bottom: 2px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .chef-cat, .host-pig, .chef-top, .chef-back {
-        animation: none;
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
-}
-.verdict .go-btn {
-    top: 25px;
-    right: 20px;
+
+    .chef-cat, 
+    .host-pig, 
+    .chef-top, 
+    .chef-back,
+    .dialog,
+    .verdict {
+        animation: none !important;
+    }
 }
