@@ -1,0 +1,801 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #0b4f6c;
+    color: white;
+    font-family: Georgia, 'Times New Roman', serif;
+    display: flex;
+    flex-direction: column;
+}
+
+nav
+{
+    background-color: #d90429;
+    padding: 12px 15px;
+    width: 100%;
+}
+
+#brand-name, .top-btn {
+    background-color: #1A153B;
+    border: 1px solid #4a3f8a;
+    border-radius: 5px;
+    padding: 6px 12px;
+    display: inline-block;
+    font-size: 14px;
+}
+
+#brand-name { font-weight:bold; }
+
+.top-links
+{
+    display: inline-block;
+}
+
+.top-link {
+    text-decoration: none;
+    color: white;
+    margin-left: 0px;
+}
+
+main {
+    padding: 10px;
+    width: 100%;
+    flex: 1;
+}
+
+.kitchen-floor {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.kitchen-floor input[type="checkbox"],
+.kitchen-floor input[type="radio"] {
+    display: none;
+}
+
+.cook-frame
+{
+    border: 3px solid #d90429;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    position: relative;
+    background-color: #0b4f6c;
+    background-image: url(backgrounds/stage.png);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.recipe-sheet {
+    width: 100%;
+    max-width: 350px;
+    height: 500px;
+    border: 3px solid #d90429;
+    border-radius: 20px;
+    background-color: #0b4f6c;
+    background-image: url(backgrounds/recipe.png);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.recipe-inner {
+    padding: 20px 15px 15px;
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+}
+
+.recipe-sheet h2 {
+    margin-top: 0px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+
+.recipe-inner h3, .steps-heading, .recipe-steps { margin-left: 10px; }
+
+.recipe-inner h3 { font-size: 15px; margin-bottom: 8px; }
+
+.recipe-sheet .dish-name { color: #ef233c; }
+
+.steps-heading {
+    font-size: 14px;
+    font-style: italic;
+    color: #dfdfdf;
+    margin-bottom: 10px;
+}
+
+.recipe-steps { padding-left: 20px; line-height: 1.6; }
+
+.recipe-steps li { font-size: 13px; margin-bottom: 4px; }
+
+.taunt-scene,
+.rules-scene,
+.first-tool-scene,
+.broth-scene,
+.heat-scene,
+.second-tool-scene,
+.meat-scene,
+.cut-scene,
+.season-scene,
+.decide-scene,
+.veg-scene,
+.timer-scene,
+.reaction-scene,
+.taste-intro-scene,
+.smell-scene,
+.gulp-scene,
+.win-scene,
+.fail-scene {
+    display: none;
+}
+
+.cat-pocket, .pig-hamsey { position: absolute; top: 130px; }
+
+.cat-pocket { left: 100px; animation: hop 1s ease-in-out infinite; }
+
+.pig-hamsey { right: 100px; animation: sway 2s ease-in-out infinite; }
+
+.cat-wiggle {
+    animation: chef-slide-left 0.6s ease-out forwards, hop 1s ease-in-out infinite 0.6s;
+}
+
+.pig-wiggle {
+    animation: hamsey-slide-right .6s ease-out forwards, sway 2s ease-in-out infinite 0.6s;
+}
+
+@keyframes chef-slide-left {
+    from { transform:translateX(-150px); opacity:0; }
+
+    100% { transform:translateX(0); opacity:1; }
+}
+
+@keyframes hamsey-slide-right {
+    0% { transform: translateX(150px); opacity: 0; }
+
+    100% { transform:translateX(0); opacity:1; }
+}
+
+.pig-center {
+    position: absolute;
+    top: 145px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 170px;
+    width: auto;
+    object-fit: contain;
+    animation: sway 2s ease-in-out infinite;
+}
+
+.cat-pocket, .pig-hamsey {
+    max-height: 170px;
+    width: auto;
+    object-fit: contain;
+}
+
+.counter {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    animation: table-rise .5s ease-in-out forwards;
+}
+
+.counter-fixed
+{
+    animation: none;
+}
+
+.counter-img {
+    max-width: 320px;
+    height: auto;
+    display: block;
+}
+
+.pot-img {
+    position: absolute;
+    width: 105px;
+    height: 105px;
+    object-fit: contain;
+    bottom: 75px;
+    left: 55px;
+    z-index: 3;
+    opacity: 0;
+    animation: pot-slide-in 0.4s ease-in-out .2s forwards;
+}
+
+.pot-img.static-pot { animation: none !important; opacity: 1 !important; }
+
+.pot-img.broth-pot {
+    display: none;
+}
+
+.simmering-pot {
+    position: absolute;
+    width: 105px;
+    height: 105px;
+    bottom: 75px;
+    left: 55px;
+    z-index: 3;
+    display: block;
+    opacity: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: pot-simmer .6s steps(1) infinite;
+}
+
+.stew-pot
+{
+    position: absolute;
+    width: 105px;
+    height: 105px;
+    bottom: 75px;
+    left: 55px;
+    z-index: 3;
+    display: block;
+    opacity: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: stew-simmer 0.6s steps(1) infinite;
+}
+
+.smell-scene .stew-pot, .gulp-scene .stew-pot, .win-scene .stew-pot { display: none !important; }
+
+.board-img {
+    position: absolute;
+    width: 117px;
+    height: 117px;
+    object-fit: contain;
+    bottom: 60px;
+    right: 45px;
+    z-index: 3;
+    display: none;
+}
+
+.meat-scene .board-img.base-board {
+    display: block;
+}
+
+.meat-scene .board-img.meat-board { display: none; }
+
+#step-meat-done:checked
+    ~ .cook-frame:has(#ing2-pork:checked):has(#ing2-bacon:checked):not(:has(.bad-ing-2:checked)) .meat-scene .board-img.base-board {
+    display: none;
+}
+
+#step-meat-done:checked
+    ~ .cook-frame:has(#ing2-pork:checked):has(#ing2-bacon:checked):not(:has(.bad-ing-2:checked)) .meat-scene .board-img.meat-board {
+    display: block;
+}
+
+@keyframes pot-simmer {
+    from { background-image:url('items/pot-broth-anim-1.png'); }
+
+    33.33% { background-image: url('items/pot-broth-anim-2.png'); }
+
+    66.66% { background-image: url('items/pot-broth-anim-3.png'); }
+}
+
+@keyframes stew-simmer {
+    0% { background-image: url('items/pot-meat-anim-1.png'); }
+
+    33.33% { background-image: url('items/pot-meat-anim-2.png'); }
+
+    66.66% { background-image: url('items/pot-meat-anim-3.png'); }
+}
+
+@keyframes table-rise {
+    from { opacity:0; transform:translateX(-50%) translateY(20px); }
+
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes pot-slide-in {
+    0% { opacity: 0; transform: translateX(-30px); }
+
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+.talk-bubble {
+    background-color: #0b4f6c;
+    border: 2px solid #d90429;
+    border-radius: 15px;
+    width: calc(100% - 40px);
+    max-width: 740px;
+    height: 65px;
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 15px;
+    animation: bubble-slide-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.talk-bubble p {
+    margin: 0px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+.prompt-top { 
+    top: 15px; 
+    bottom: auto; 
+    height: 50px;
+}
+
+.gear-row {
+    position: absolute;
+    top: 118px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 5;
+    max-width: 90%;
+}
+
+.gear-pick {
+    background-color: #15384E;
+    border: 2px solid #d90429;
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    width: 55px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .2s ease, background-color .2s ease;
+}
+
+.gear-text
+{
+    width: 75px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.act-pick { width: 100px; font-size: 12px; }
+
+.time-pick { width: 80px; font-size: 12px; }
+
+.gear-pick:hover { transform: scale(1.05); }
+
+.gear-pick img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.gear-pick:has(input:checked),
+.shelf-item:has(input:checked) {
+    background-color: #a3e4d7;
+    color: #0b4f6c;
+}
+
+.shelf {
+    position: absolute;
+    top: 118px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 5;
+    max-width: 92%;
+}
+
+.shelf-item {
+    background-color: #15384e;
+    border: 1px solid #d90429;
+    border-radius: 8px;
+    padding: 6px;
+    text-align: center;
+    cursor: pointer;
+    width: 45px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.shelf-item:hover { transform:scale(1.05); }
+
+.shelf-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.go-on-btn {
+    background-color: #D90429;
+    border: 1px solid #ef233c;
+    border-radius: 8px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    top: -10px;
+    z-index: 7;
+    transition: background-color 0.25s, transform 0.25s;
+}
+
+.go-on-btn:hover { background-color: #DE6472; transform: scale(1.05); }
+
+.arrow-aim { position: relative; display: inline-block; }
+
+@keyframes bubble-slide-in {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+#step-hello:checked ~ .cook-frame .hello-scene { display: none; }
+
+#step-hello:checked ~ .cook-frame .taunt-scene { display: block; }
+
+#step-challenge:checked ~ .cook-frame .taunt-scene { display: none; }
+
+#step-challenge:checked ~ .cook-frame .rules-scene { display:block; }
+
+#step-rules:checked ~ .cook-frame .rules-scene { display: none; }
+
+#step-rules:checked ~ .cook-frame .first-tool-scene {
+    display: block;
+}
+
+#step-pot-chosen:checked ~ .cook-frame .first-tool-scene { display: none !important; }
+
+#step-pot-chosen:checked ~ .cook-frame:has(#pot-pick:checked) .broth-scene { display: block; }
+
+#step-pot-chosen:checked ~ .cook-frame:has(#pan-pick:checked) .fail-scene,
+#step-pot-chosen:checked ~ .cook-frame:has(#wok-pick:checked) .fail-scene,
+#step-pot-chosen:checked ~ .cook-frame:has(#board-pick:checked) .fail-scene,
+#step-pot-chosen:checked ~ .cook-frame:not(:has(input[name="tool"]:checked)) .fail-scene {
+    display: block;
+}
+
+#step-broth-done:checked ~ .cook-frame .broth-scene { display:none !important; }
+
+#step-broth-done:checked ~ .cook-frame:has(#ing-broth:checked):not(:has(.bad-ing:checked)) .pot-img.base-pot {
+    display: none;
+}
+
+#step-broth-done:checked ~ .cook-frame:has(#ing-broth:checked):not(:has(.bad-ing:checked)) .pot-img.broth-pot {
+    display: block;
+    opacity: 1;
+}
+
+#step-broth-done:checked ~ .cook-frame:has(#ing-broth:checked):not(:has(.bad-ing:checked)) .heat-scene { display:block; }
+
+#step-broth-done:checked ~ .cook-frame:not(:has(#ing-broth:checked)) .fail-scene,
+#step-broth-done:checked ~ .cook-frame:has(.bad-ing:checked) .fail-scene {
+    display: block;
+}
+
+#step-broth-done:checked ~ .cook-frame:not(:has(#ing-broth:checked)) .broth-scene,
+#step-broth-done:checked ~ .cook-frame:has(.bad-ing:checked) .broth-scene {
+    display: none !important;
+}
+
+#step-heat:checked ~ .cook-frame .heat-scene
+{
+    display: none !important;
+}
+
+#step-heat:checked ~ .cook-frame:has(#temp-high:checked) .second-tool-scene { display: block; }
+
+#step-heat:checked ~ .cook-frame:not(:has(#temp-high:checked)) .fail-scene { display: block; }
+
+#step-heat:checked ~ .cook-frame:not(:has(#temp-high:checked)) .heat-scene {
+    display: none !important;
+}
+
+#step-board-chosen:checked ~ .cook-frame .second-tool-scene {
+    display: none !important;
+}
+
+#step-board-chosen:checked ~ .cook-frame:has(#board-pick2:checked) .meat-scene {
+    display: block;
+}
+
+#step-board-chosen:checked ~ .cook-frame:has(#pan-pick2:checked) .fail-scene,
+#step-board-chosen:checked ~ .cook-frame:has(#pot-pick2:checked) .fail-scene,
+#step-board-chosen:checked ~ .cook-frame:has(#wok-pick2:checked) .fail-scene {
+    display: block;
+}
+
+#step-meat-done:checked ~ .cook-frame .meat-scene {
+    display: none !important;
+}
+
+#step-meat-done:checked ~ .cook-frame:has(#ing2-pork:checked):has(#ing2-bacon:checked):not(:has(.bad-ing-2:checked)) .cut-scene {
+    display: block;
+}
+
+#step-meat-done:checked ~ .cook-frame:not(:has(#ing2-pork:checked)):not(:has(#ing2-bacon:checked)) .fail-scene,
+#step-meat-done:checked ~ .cook-frame:not(:has(#ing2-pork:checked)) .fail-scene,
+#step-meat-done:checked ~ .cook-frame:not(:has(#ing2-bacon:checked)) .fail-scene,
+#step-meat-done:checked ~ .cook-frame:has(.bad-ing-2:checked) .fail-scene
+{
+    display: block;
+}
+
+#step-cut:checked ~ .cook-frame .cut-scene { display:none !important; }
+
+#step-cut:checked ~ .cook-frame:has(#cut-dice:checked) .season-scene { display:block; }
+
+#step-cut:checked ~ .cook-frame:not(:has(#cut-dice:checked)) .fail-scene
+{
+    display: block;
+}
+
+#step-cut:checked ~ .cook-frame:not(:has(#cut-dice:checked)) .cut-scene {
+    display: none !important;
+}
+
+#step-season-done:checked ~ .cook-frame .season-scene { display: none !important; }
+
+#step-season-done:checked
+    ~ .cook-frame:has(#ing3-paprika:checked):has(#ing3-garlic:checked):not(:has(.bad-ing-3:checked)) .decide-scene {
+    display: block;
+}
+
+#step-season-done:checked ~ .cook-frame:not(:has(#ing3-paprika:checked)):not(:has(#ing3-garlic:checked)) .fail-scene,
+#step-season-done:checked ~ .cook-frame:not(:has(#ing3-paprika:checked)) .fail-scene,
+#step-season-done:checked ~ .cook-frame:not(:has(#ing3-garlic:checked)) .fail-scene,
+#step-season-done:checked ~ .cook-frame:has(.bad-ing-3:checked) .fail-scene {
+    display: block;
+}
+
+#step-action:checked ~ .cook-frame .decide-scene { display: none !important; }
+
+#step-action:checked ~ .cook-frame:has(#action-add:checked) .veg-scene { display: block; }
+
+#step-action:checked ~ .cook-frame:not(:has(#action-add:checked)) .fail-scene {
+    display: block;
+}
+
+#step-action:checked ~ .cook-frame:not(:has(#action-add:checked)) .decide-scene { display: none !important; }
+
+#step-veg-done:checked ~ .cook-frame .veg-scene { display:none !important; }
+
+#step-veg-done:checked ~ .cook-frame:has(#ing4-carrots:checked):not(:has(.bad-ing-4:checked)) .timer-scene {
+    display: block;
+}
+
+#step-veg-done:checked ~ .cook-frame:not(:has(#ing4-carrots:checked)) .fail-scene,
+#step-veg-done:checked ~ .cook-frame:has(.bad-ing-4:checked) .fail-scene {
+    display: block;
+}
+
+#step-timer:checked ~ .cook-frame .timer-scene { display: none !important; }
+
+#step-timer:checked ~ .cook-frame:has(#dur-1hr:checked) .reaction-scene { display: block; }
+
+#step-timer:checked ~ .cook-frame:not(:has(#dur-1hr:checked)) .fail-scene {
+    display: block;
+}
+
+#step-timer:checked ~ .cook-frame:not(:has(#dur-1hr:checked)) .timer-scene {
+    display: none !important;
+}
+
+#step-reaction:checked ~ .cook-frame .reaction-scene { display: none !important; }
+
+#step-reaction:checked ~ .cook-frame .taste-intro-scene {
+    display: block;
+}
+
+#step-taste-intro:checked ~ .cook-frame .taste-intro-scene
+{
+    display: none !important;
+}
+
+#step-taste-intro:checked ~ .cook-frame .smell-scene { display:block; }
+
+#step-smell:checked ~ .cook-frame .smell-scene { display: none !important; }
+
+#step-smell:checked ~ .cook-frame .gulp-scene {
+    display: block;
+}
+
+#step-gulp:checked ~ .cook-frame .gulp-scene { display:none !important; }
+
+#step-gulp:checked ~ .cook-frame .win-scene { display: block; }
+
+footer { text-align: center; margin: 20px 0; font-size: 13px; }
+
+@keyframes hop {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% { transform:translateY(-8px); }
+}
+
+@keyframes sway {
+    from, to { transform: translateY(0) rotate(0); }
+
+    50% {
+        transform: translateY(-5px) rotate(2deg);
+    }
+}
+
+.top-btn:hover { background-color: #2B2360; }
+
+.go-on-btn:focus-visible, .top-link:focus-visible { outline: 2px solid #ffd166; outline-offset: 2px; }
+
+@media (max-width: 850px) {
+    .cook-frame, .recipe-sheet {
+        height: 380px;
+    }
+    .cat-pocket, .pig-hamsey {
+        top: 80px;
+        max-height: 110px;
+    }
+    .cat-pocket { left: 30px; }
+    .pig-hamsey { right: 30px; }
+    .pig-center {
+        top: 90px;
+        max-height: 110px;
+    }
+    .gear-row {
+        top: 95px;
+    }
+    .shelf {
+        top: 95px;
+    }
+}
+
+@media (max-width: 480px), (max-height: 660px) {
+    main {
+        padding: 5px;
+    }
+    nav {
+        padding: 8px 10px;
+    }
+    .cook-frame, .recipe-sheet {
+        height: 260px;
+        border-width: 2px;
+        border-radius: 12px;
+    }
+    .cat-pocket, .pig-hamsey {
+        top: 45px;
+        max-height: 70px;
+    }
+    .cat-pocket { left: 10px; }
+    .pig-hamsey { right: 10px; }
+    .pig-center {
+        top: 55px;
+        max-height: 70px;
+    }
+    .talk-bubble {
+        height: 48px;
+        bottom: 6px;
+        left: 8px;
+        width: calc(100% - 16px);
+        padding: 0 6px;
+    }
+    .talk-bubble p {
+        font-size: 10.5px;
+    }
+    .prompt-top {
+        height: 45px;
+    }
+    .go-on-btn {
+        font-size: 9.5px;
+        padding: 2px 5px;
+        top: -7px;
+        right: 6px;
+    }
+    .gear-row {
+        top: 67px;
+        gap: 5px;
+    }
+    .shelf {
+        top: 67px;
+        gap: 3px;
+    }
+    .gear-pick {
+        width: 36px;
+        padding: 2px;
+    }
+    .gear-text {
+        width: 50px;
+        font-size: 9.5px;
+    }
+    .act-pick { width: 62px; font-size: 9.5px; }
+    .time-pick { width: 52px; font-size: 9.5px; }
+    .shelf-item {
+        width: 30px;
+        padding: 2px;
+    }
+    .counter {
+        transform: translateX(-50%) scale(0.65);
+        transform-origin: bottom center;
+        bottom: -20px;
+    }
+    .recipe-inner {
+        padding: 10px 8px;
+    }
+    .recipe-sheet h2 {
+        font-size: 15px;
+    }
+    .recipe-inner h3 {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+    .steps-heading {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+    .recipe-steps li {
+        font-size: 10.5px;
+        margin-bottom: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .cat-pocket, 
+    .pig-hamsey, 
+    .pig-center, 
+    .counter, 
+    .pot-img, 
+    .simmering-pot,
+    .stew-pot,
+    .talk-bubble {
+        animation: none !important;
+    }
+}
