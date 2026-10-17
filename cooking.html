@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cooking Competition Game">
+    <title>Cooking Competition - Restaurant Rescue</title>
+    <link rel="stylesheet" href="cooking.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1 id="brand-name">Restaurant Rescue</h1>
+            <div class="top-links">
+                <a href="index.html" class="top-link top-btn">Home</a>
+                <a href="about.html" class="top-link top-btn">About Us</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="kitchen-floor">
+
+        <input type="checkbox" id="step-hello">
+        <input type="checkbox" id="step-challenge">
+        <input type="checkbox" id="step-rules">
+        <input type="checkbox" id="step-pot-chosen">
+        <input type="checkbox" id="step-broth-done">
+        <input type="checkbox" id="step-heat">
+        <input type="checkbox" id="step-board-chosen">
+        <input type="checkbox" id="step-meat-done">
+        <input type="checkbox" id="step-cut">
+        <input type="checkbox" id="step-season-done">
+        <input type="checkbox" id="step-action">
+        <input type="checkbox" id="step-veg-done">
+        <input type="checkbox" id="step-timer">
+        <input type="checkbox" id="step-reaction">
+        <input type="checkbox" id="step-taste-intro">
+        <input type="checkbox" id="step-smell">
+        <input type="checkbox" id="step-gulp">
+        <input type="checkbox" id="step-win">
+
+        <div class="cook-frame">
+
+            <div class="hello-scene">
+                <img src="cat-expressions/neutral.png" alt="Chef Pocket, ready to cook" class="cat-pocket">
+                <img src="pig-expressions/neutral.png" alt="Gordon Hamsey the Host" class="pig-hamsey">
+
+                <div class="talk-bubble">
+                    <label for="step-hello" class="go-on-btn">Next</label>
+                    <p>You've made it this far, but can your cooking skills hold up?</p>
+                </div>
+            </div>
+
+            <div class="taunt-scene">
+                <img src="cat-expressions/happy.png" alt="Chef Pocket" class="cat-pocket">
+                <img src="pig-expressions/neutral.png" alt="Gordon Hamsey" class="pig-hamsey">
+
+                <div class="talk-bubble">
+                    <label for="step-challenge" class="go-on-btn">Next</label>
+                    <p>I don't appreciate your recipe, but I can't stop you.</p>
+                </div>
+            </div>
+
+            <div class="rules-scene">
+                <img src="cat-expressions/say-what.png" alt="Chef Pocket" class="cat-pocket">
+                <img src="pig-expressions/neutral.png" alt="Gordon Hamsey" class="pig-hamsey">
+
+                <div class="talk-bubble">
+                    <label for="step-rules" class="go-on-btn">Next</label>
+                    <p>Now cook using the correct tools and ingredients.</p>
+                </div>
+            </div>
+
+            <div class="first-tool-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                </div>
+
+                <div class="talk-bubble prompt-top">
+                    <label for="step-pot-chosen" class="go-on-btn">Confirm Tool</label>
+                    <p>Select your cookware for the first step</p>
+                </div>
+
+                <div class="gear-row">
+                    <label class="gear-pick">
+                        <input type="radio" name="tool" id="pan-pick">
+                        <img src="items/pan.png" alt="Frying pan">
+                    </label>
+                    <label class="gear-pick">
+                        <input type="radio" name="tool" id="pot-pick">
+                        <img src="items/pot-empty.png" alt="Pot">
+                    </label>
+                    <label class="gear-pick">
+                        <input type="radio" name="tool" id="wok-pick">
+                        <img src="items/wok.png" alt="Wok">
+                    </label>
+                    <label class="gear-pick">
+                        <input type="radio" name="tool" id="board-pick">
+                        <img src="items/board.png" alt="Cutting Board">
+                    </label>
+                </div>
+            </div>
+
+            <div class="broth-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <img src="items/pot.png" alt="Pot on table" class="pot-img base-pot static-pot">
+                    <img src="items/pot-broth.png" alt="Pot with Broth" class="pot-img broth-pot static-pot">
+                </div>
+
+                <div class="talk-bubble prompt-top">
+                    <label for="step-broth-done" class="go-on-btn">Confirm</label>
+                    <p>Select your chosen ingredient for the first step</p>
+                </div>
+
+                <div class="shelf">
+                    <label class="shelf-item">
+                        <input type="radio" name="ing-group-1" class="bad-ing" id="ing-pork">
+                        <img src="Icons/pork.png" alt="Pork">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="radio" name="ing-group-1" class="bad-ing" id="ing-bacon">
+                        <img src="Icons/bacon.png" alt="Bacon">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="radio" name="ing-group-1" class="bad-ing" id="ing-carrots">
+                        <img src="Icons/carrots.png" alt="Carrots">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="radio" name="ing-group-1" class="good-ing" id="ing-broth">
+                        <img src="Icons/broth.png" alt="Broth">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="radio" name="ing-group-1" class="bad-ing" id="ing-paprika">
+                        <img src="Icons/paprika.png" alt="Paprika">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="radio" name="ing-group-1" class="bad-ing" id="ing-garlic">
+                        <img src="Icons/garlic-powder.png" alt="Garlic">
+                    </label>
+                </div>
+            </div>
+
+            <div class="heat-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <img src="items/pot-broth.png" alt="Pot with Broth" class="pot-img static-pot" style="display: block; opacity: 1;">
+                </div>
+
+                <div class="talk-bubble prompt-top">
+                    <label for="step-heat" class="go-on-btn">Confirm Temp</label>
+                    <p>Select the right temperature</p>
+                </div>
+
+                <div class="gear-row">
+                    <label class="gear-pick gear-text">
+                        <input type="radio" name="temp" id="temp-low">
+                        <span>Low</span>
+                    </label>
+                    <label class="gear-pick gear-text">
+                        <input type="radio" name="temp" id="temp-med">
+                        <span>Medium</span>
+                    </label>
+                    <label class="gear-pick gear-text">
+                        <input type="radio" name="temp" id="temp-high">
+                        <span>High</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="second-tool-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <div class="simmering-pot"></div>
+                </div>
+
+                <div class="talk-bubble prompt-top">
+                    <label for="step-board-chosen" class="go-on-btn">Confirm Tool</label>
+                    <p>Choose your cookware for the second step</p>
+                </div>
+
+                <div class="gear-row">
+                    <label class="gear-pick">
+                        <input type="radio" name="tool2" id="pan-pick2">
+                        <img src="items/pan.png" alt="Frying pan">
+                    </label>
+                    <label class="gear-pick">
+                        <input type="radio" name="tool2" id="pot-pick2">
+                        <img src="items/pot-empty.png" alt="Pot">
+                    </label>
+                    <label class="gear-pick">
+                        <input type="radio" name="tool2" id="wok-pick2">
+                        <img src="items/wok.png" alt="Wok">
+                    </label>
+                    <label class="gear-pick">
+                        <input type="radio" name="tool2" id="board-pick2">
+                        <img src="items/board.png" alt="Cutting Board">
+                    </label>
+                </div>
+            </div>
+
+            <div class="meat-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <div class="simmering-pot"></div>
+                    <img src="items/board.png" alt="Cutting Board" class="board-img base-board">
+                    <img src="items/board-meat.png" alt="Cutting Board with Meat" class="board-img meat-board">
+                </div>
+
+                <div class="talk-bubble prompt-top">
+                    <label for="step-meat-done" class="go-on-btn">Confirm</label>
+                    <p>Select your next ingredients to cut</p>
+                </div>
+
+                <div class="shelf">
+                    <label class="shelf-item">
+                        <input type="checkbox" class="good-ing-2" id="ing2-pork">
+                        <img src="Icons/pork.png" alt="Pork">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="checkbox" class="good-ing-2" id="ing2-bacon">
+                        <img src="Icons/bacon.png" alt="Bacon">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="checkbox" class="bad-ing-2" id="ing2-carrots">
+                        <img src="Icons/carrots.png" alt="Carrots">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="checkbox" class="bad-ing-2" id="ing2-paprika">
+                        <img src="Icons/paprika.png" alt="Paprika">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="checkbox" class="bad-ing-2" id="ing2-garlic">
+                        <img src="Icons/garlic-powder.png" alt="Garlic">
+                    </label>
+                </div>
+            </div>
+
+            <div class="cut-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <div class="simmering-pot"></div>
+                    <img src="items/board-meat.png" alt="Cutting Board with Meat" class="board-img" style="display: block;">
+                </div>
+
+                <div class="talk-bubble prompt-top">
+                    <label for="step-cut" class="go-on-btn">Confirm Method</label>
+                    <p>Select cutting method:</p>
+                </div>
+
+                <div class="gear-row">
+                    <label class="gear-pick gear-text">
+                        <input type="radio" name="cut" id="cut-dice">
+                        <span>Dice</span>
+                    </label>
+                    <label class="gear-pick gear-text">
+                        <input type="radio" name="cut" id="cut-mince">
+                        <span>Mince</span>
+                    </label>
+                    <label class="gear-pick gear-text">
+                        <input type="radio" name="cut" id="cut-cube">
+                        <span>Cube</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="season-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <div class="simmering-pot"></div>
+                    <img src="items/board-cut.png" alt="Cutting Board with Cut Meat" class="board-img" style="display: block;">
+                </div>
+
+                <div class="talk-bubble prompt-top">
+                    <label for="step-season-done" class="go-on-btn">Confirm</label>
+                    <p>Select seasonings</p>
+                </div>
+
+                <div class="shelf">
+                    <label class="shelf-item">
+                        <input type="checkbox" class="good-ing-3" id="ing3-paprika">
+                        <img src="Icons/paprika.png" alt="Smoked Paprika">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="checkbox" class="good-ing-3" id="ing3-garlic">
+                        <img src="Icons/garlic-powder.png" alt="Garlic Powder">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="checkbox" class="bad-ing-3" id="ing3-carrots">
+                        <img src="Icons/carrots.png" alt="Carrots">
+                    </label>
+                </div>
+            </div>
+
+            <div class="decide-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <div class="simmering-pot"></div>
+                    <img src="items/board.png" alt="Cutting Board" class="board-img" style="display: block;">
+                </div>
+
+                <div class="talk-bubble prompt-top">
+                    <div class="arrow-pile">
+                        <img src="Icons/cartoon-arrow.png" alt="Pointing arrow" class="arrow-img arrow-1">
+                        <img src="Icons/cartoon-arrow.png" alt="Pointing arrow" class="arrow-img arrow-2">
+                        <img src="Icons/cartoon-arrow.png" alt="Pointing arrow" class="arrow-img arrow-3">
+                        <img src="Icons/cartoon-arrow.png" alt="Pointing arrow" class="arrow-img arrow-4">
+                        <img src="Icons/cartoon-arrow.png" alt="Pointing arrow" class="arrow-img arrow-5">
+                    </div>
+                    <label for="step-action" class="go-on-btn">Confirm</label>
+                    <p>What would you like to do with the prepared ingredients?</p>
+                </div>
+
+                <div class="gear-row">
+                    <div class="arrow-aim">
+                        <label class="gear-pick gear-text act-pick">
+                            <input type="radio" name="action-choice" id="action-add">
+                            <span>Add to pot</span>
+                        </label>
+                    </div>
+                    <label class="gear-pick gear-text act-pick">
+                        <input type="radio" name="action-choice" id="action-throw">
+                        <span>Throw away</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="veg-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <div class="stew-pot"></div>
+                    <img src="items/board.png" alt="Cutting Board" class="board-img" style="display: block;">
+                </div>
+
+                <div class="talk-bubble prompt-top">
+                    <label for="step-veg-done" class="go-on-btn">Confirm</label>
+                    <p>Select last ingredient</p>
+                </div>
+
+                <div class="shelf">
+                    <label class="shelf-item">
+                        <input type="checkbox" class="good-ing-4" id="ing4-carrots">
+                        <img src="Icons/carrots.png" alt="Carrots">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="checkbox" class="bad-ing-4" id="ing4-paprika">
+                        <img src="Icons/paprika.png" alt="Smoked Paprika">
+                    </label>
+                    <label class="shelf-item">
+                        <input type="checkbox" class="bad-ing-4" id="ing4-garlic">
+                        <img src="Icons/garlic-powder.png" alt="Garlic">
+                    </label>
+                </div>
+            </div>
+
+            <div class="timer-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <div class="stew-pot"></div>
+                    <img src="items/board.png" alt="Cutting Board" class="board-img" style="display: block;">
+                </div>
+
+                <div class="talk-bubble prompt-top">
+                    <label for="step-timer" class="go-on-btn">Confirm Time</label>
+                    <p>How long do you want to let the stew cook for?</p>
+                </div>
+
+                <div class="gear-row">
+                    <label class="gear-pick gear-text time-pick">
+                        <input type="radio" name="duration" id="dur-30">
+                        <span>30 mins</span>
+                    </label>
+                    <label class="gear-pick gear-text time-pick">
+                        <input type="radio" name="duration" id="dur-45">
+                        <span>45 mins</span>
+                    </label>
+                    <label class="gear-pick gear-text time-pick">
+                        <input type="radio" name="duration" id="dur-1hr">
+                        <span>1 hour</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="reaction-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <div class="stew-pot"></div>
+                    <img src="items/board.png" alt="Cutting Board" class="board-img" style="display: block;">
+                </div>
+
+                <img src="cat-expressions/happy.png" alt="Chef Pocket" class="cat-pocket cat-wiggle">
+                <img src="pig-expressions/neutral.png" alt="Gordon Hamsey" class="pig-hamsey pig-wiggle">
+
+                <div class="talk-bubble">
+                    <label for="step-reaction" class="go-on-btn">Next</label>
+                    <p>I can't believe you got this far. There's no way a cat can cook.</p>
+                </div>
+            </div>
+
+            <div class="taste-intro-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <div class="stew-pot"></div>
+                    <img src="items/board.png" alt="Cutting Board" class="board-img" style="display: block;">
+                </div>
+
+                <img src="cat-expressions/happy.png" alt="Chef Pocket" class="cat-pocket">
+                <img src="pig-expressions/neutral.png" alt="Gordon Hamsey" class="pig-hamsey">
+
+                <div class="talk-bubble">
+                    <label for="step-taste-intro" class="go-on-btn">Next</label>
+                    <p>Looks like your dish is done. Let's have a taste.</p>
+                </div>
+            </div>
+
+            <div class="smell-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <img src="items/board.png" alt="Cutting Board" class="board-img" style="display: block;">
+                </div>
+
+                <img src="cat-expressions/happy.png" alt="Chef Pocket" class="cat-pocket">
+                <img src="pig-expressions/holding-pot.png" alt="Gordon Hamsey holding pot" class="pig-center">
+
+                <div class="talk-bubble">
+                    <label for="step-smell" class="go-on-btn">Next</label>
+                    <p>This Pig Stew... It- It actually smells really nice...</p>
+                </div>
+            </div>
+
+            <div class="gulp-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <img src="items/board.png" alt="Cutting Board" class="board-img" style="display: block;">
+                </div>
+
+                <img src="cat-expressions/happy.png" alt="Chef Pocket" class="cat-pocket">
+                <img src="pig-expressions/drinking-pot.png" alt="Gordon Hamsey drinking" class="pig-center">
+
+                <div class="talk-bubble">
+                    <label for="step-gulp" class="go-on-btn">Next</label>
+                    <p>*Gulp. Gulp. Gulp*</p>
+                </div>
+            </div>
+
+            <div class="win-scene">
+                <div class="counter counter-fixed">
+                    <img src="items/table.png" alt="Kitchen Table" class="counter-img">
+                    <img src="items/board.png" alt="Cutting Board" class="board-img" style="display: block;">
+                </div>
+
+                <img src="cat-expressions/happy.png" alt="Chef Pocket" class="cat-pocket">
+                <img src="pig-expressions/happy-pot.png" alt="Gordon Hamsey happy" class="pig-center">
+
+                <div class="talk-bubble">
+                    <a href="index.html" class="go-on-btn">Finish</a>
+                    <p>I've never had something so good! You know what... You win!</p>
+                </div>
+            </div>
+
+            <div class="fail-scene">
+                <img src="cat-expressions/say-what.png" alt="Chef Pocket shocked" class="cat-pocket">
+                <img src="pig-expressions/angry.png" alt="Gordon Hamsey cackling" class="pig-hamsey">
+
+                <div class="talk-bubble">
+                    <a href="game-over.html" class="go-on-btn">Try Again</a>
+                    <p><strong>BWAHAHAHA!</strong> Absolute disaster! You completely failed this step, you absolute donkey!</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cook-frame recipe-sheet">
+            <div class="recipe-inner">
+                <h2>Cat's Secrete Recipe</h2>
+                <h3>Current Recipe: <span class="dish-name">Pig Stew</span></h3>
+                <p class="steps-heading">Instructions:</p>
+                <ul class="recipe-steps">
+                    <li>Add Beef Broth to pot and put on high.</li>
+                    <li>Dice Pork and Bacon on cutting board.</li>
+                    <li>Season meats with Paprika and Garlic Powder.</li>
+                    <li>Add to pot.</li>
+                    <li>Add carrots.</li>
+                    <li>Let it cook for 1 hour.</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; Restaurant Rescue 2026</p>
+    </footer>
+</body>
+</html>
