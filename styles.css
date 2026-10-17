@@ -99,8 +99,20 @@ main {
     gap: 40px
 }
 
-.menu_grid {
+#pocket_menu {
+  border: 3px solid #d90429;
+  border-radius: 20px;
+  background-image: url(backgrounds/menu.jpg);
+  background-size: 200px;
+  width: 500px;
+  height: 500px;
+  position: relative;
+  isolation: isolate;
+  flex-shrink: 0;
+}
 
+.menu_options {
+    
 }
 
 
