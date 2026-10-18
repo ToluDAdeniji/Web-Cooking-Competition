@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Cooking Competition show">
+	<title>Gameover - Cooking Competition</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body class="body">
+    <!--header/Navigation Bar-->
+    <header>
+        <nav>
+          <h1 id="nav-title">Restaurant Rescue</h1>
+           
+          <div class="nav-buttons">
+              <!--Home Button-->
+              <a href="index.html" class="nav-link">
+                 <div class="nav-button">Home</div>
+              </a>
+
+               <!--About Me Button-->
+               <a href="about.html" class="nav-link">
+                 <div class="nav-button">About Us</div>
+               </a>      
+            </div>
+        </nav>
+    </header>
+    
+  <!--Main Content-->
+	<main>
+        <section class="content-grid" aria-label="Cooking competition game">
+            
+            <!--Since this is what happens when the player loses, there will be one 1 checkbox-->
+            <input type="checkbox" id="game-over-enable">
+
+            <div class="loser-box">
+                
+                <!--A homeless cat crying in it's box, the narrations telling you how bad you messed up-->
+                <div class="scene-one">
+
+                    <div class="homeless-cat-chef">
+                        <img src="cat-expressions/sad.png" alt="Pocket is now homeless">
+                    </div>
+
+                    <div class="text_bubble">
+                        <img src="backgrounds/text-bubble.png" alt="">
+                        <p>Spare Change...</p>
+                    </div>
+
+                    <div class="narrative">
+                       <p><em>(You failed to save Pocket's restaurant as well as their house...)</em></p>
+
+                       <label for="game-over-enable" class="next-button">
+                        D:
+                       </label>
+                    </div>
+                </div>
+
+                <div class="game-over">
+                    <div class="homeless-cat-chef">
+                        <img src="cat-expressions/sad.png" alt="Pocket Cries as the scene blurs to the game over screen">
+                    </div>
+
+                    <div class="try-again">
+                        <img src="backgrounds/game-over-logo.png" alt=" game over screen that will be animated">
+
+                        <nav class="next-button-nav">
+                            <a href="index.html">Restart</a>
+                        </nav>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
+    
+</body>
+</html>

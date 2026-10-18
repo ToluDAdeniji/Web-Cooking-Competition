@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Cooking Competition show">
+	<title>Home - Cooking Competition</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body class="body">
+    <!--header/Navigation Bar-->
+    <header>
+        <nav>
+          <h1 id="nav-title">Restaurant Rescue</h1>
+           
+          <div class="nav-buttons">
+              <!--Home Button-->
+              <a href="index.html" class="nav-link">
+                 <div class="nav-button">Home</div>
+              </a>
+
+               <!--About Me Button-->
+               <a href="about.html" class="nav-link">
+                 <div class="nav-button">About Us</div>
+               </a>      
+            </div>
+        </nav>
+    </header>
+    
+<!--Main Content-->
+	<main>
+        
+        <section class="content-grid" aria-label="Cooking competition game">
+            
+            <!-- Hidden checkbox/scene control-->
+            <input type="checkbox" id="start-enable">
+            <input type="checkbox" id="scene-two-enable">
+            <input type="checkbox" id="scene-three-enable">
+            <input type="checkbox" id="scene-four-enable">
+            <input type="checkbox" id="scene-five-enable">
+            <input type="checkbox" id="scene-six-enable">
+            <input type="checkbox" id="scene-seven-enable">
+            <input type="checkbox" id="scene-eight-enable">
+            <input type="checkbox" id="scene-nine-enable">
+            
+
+            <!-- Start button is now outside the content-box, so it won't get blurred -->
+            <label for="start-enable" id="start-link" class="start-button">
+                Start
+            </label>
+
+            <div class="content-box">
+                
+                <div class="scene-one">
+                    
+                    <!--Chef cat animation-->
+                    <div class="walking-cat-chef">
+                      <img src="cat-expressions/neutral.png" alt="the character the player has to help">
+                    </div>
+                 
+                    <!--Narrative Text Box-->
+                   <div id="narrative">
+                       <p>Oh! M-my first Customer Welcome! </p>
+                       <label for="scene-two-enable" class="next-button">
+                         Next
+                       </label>
+                   </div>
+                </div>
+
+                <div class="scene-two">
+
+                    <div class="cat-chef">
+                        <img src="cat-expressions/happy.png" alt="Happy cat">
+                    </div>
+
+                    <div class="narrative">
+                        <p>My name is Pocket.</p> 
+
+                        <label for="scene-three-enable" class="next-button">
+                            Next
+                        </label>
+                    </div>
+                </div>
+
+                <div class="scene-three">
+
+                    <div class="troubled-cat-chef">
+                        <img src="cat-expressions/troubled.png" alt="Trauma dumping">
+                    </div>
+
+                    <div class="narrative">
+                        <p>Unfortunately, you came at a bad time, this place will be permanently close, since I can't pay the bills.</p>
+
+                          <label for="scene-four-enable" class="next-button">
+                             Next
+                          </label>
+                    </div>
+
+
+
+                </div>
+
+                <div class="scene-four">
+
+                    <div class="sad-cat-chef">
+                        <img src="cat-expressions/sad.png" alt="Crying Cat">
+                    </div>
+
+                    <div class="narrative">
+                        <p>If I don't get more money and customers soon, chef cat will be street cat.</p>
+
+                        <label for="scene-five-enable" class="next-button">
+                            Next
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="scene-five">
+
+                    <div class="sad-cat-chef">
+                         <img src="cat-expressions/sad.png" alt="Still crying understanable because they are about to be homeless">
+                    </div>
+                     
+                    <div class="narrative">
+                        <p> (<em>Before coming here you, saw flyer of a cooking competition happening next week. </em>)</p>
+                        
+                        <label for="scene-six-enable" class="next-button">
+                            Next
+                        </label>
+                    </div>
+                </div>
+
+                <div class="scene-six">
+
+                    <div class="troubled-cat-chef">
+                        <img src="cat-expressions/neutral.png" alt="Stops crying after giving info">
+                    </div>
+
+                    <div class="narrative">
+                        <p>(<em>You give Pocket this verry information.</em>)</p>
+
+                        <label for="scene-seven-enable" class="next-button">
+                            Next
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="scene-seven">
+
+                    <div class="cat-chef">
+                        <img src="cat-expressions/say-what.png" alt="Responds to info">
+                    </div>
+
+                    <div class="narrative">
+                      <p>Say what, a cooking competition? Well I don't suppose I should give it try.</p>
+
+                      <label for="scene-eight-enable" class="next-button">
+                         Next
+                      </label>
+                    </div>
+
+                </div>
+
+                <div class="scene-eight">
+
+                    <div class="cat-chef">
+                        <img src="cat-expressions/happy.png" alt="Pocket gives you a deal">
+                    </div>
+
+                    <div class="narrative">
+                        <p>Tell you what, if you help me win the competition, you can have one of my meals for <strong>FREE</strong>!</p>
+
+                        <label for="scene-nine-enable" class="next-button">
+                            Next
+                        </label>
+                    </div>
+                </div>
+
+                <!--Unlike the other scene where you press a button, this scene gives you a choice to help Pocket.-->
+                <!--If you decide to help you get to continue the story, however if you don't it'll jump to the game-over-html screen-->
+                <div class="scene-nine">
+
+                    <div class="cat-chef">
+                        <img src="cat-expressions/happy.png" alt="Pocket wants your help">
+                    </div>
+                    
+                    <div class="narrative">
+                        <p> All you gotta do is click this button so we can start the game.</p>
+
+                            <img src="icons/cartoon-arrow.png" alt="Pocket pointers to where you gotta go" class="glove-pointer">
+
+                        <nav class="next-button-nav">
+                            <a href="competition.html">Let's go!</a>
+
+                            <a href="game-over.html">I'm not helping you. </a>
+                        </nav>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+	</main>
+
+    <footer>
+
+        <p>&copy; Restaurant Rescue 2026</p>
+        
+    </footer>
+</body>
+</html>

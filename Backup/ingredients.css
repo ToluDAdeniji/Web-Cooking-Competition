@@ -55,7 +55,6 @@ main {
     flex: 1;
 }
 
-/* Main Content*/
 .game-wrap {
     display: grid;
     grid-template-columns: 1fr;
@@ -103,7 +102,6 @@ main {
     border-radius: 17px;
 }
 
-/* Recipe Box*/
 .recipe-card {
     width: 100%;
     max-width: 350px;
@@ -173,7 +171,6 @@ main {
     margin-bottom: 4px;
 }
 
-/* Scene visibility control */
 .welcome-scene,
 .taunt-scene,
 .rules-scene,
@@ -208,7 +205,6 @@ main {
     object-fit: contain;
 }
 
-/* Chef above the table while choosing ingredients */
 .chef-top {
     position: absolute;
     top: 15px;
@@ -221,8 +217,6 @@ main {
     max-height: 110px;
     width: auto;
 }
-
-/* Characters return after Finish */
 
 .chef-back {
     position: absolute;
@@ -268,7 +262,6 @@ main {
     100% { right: 100px; opacity: 1; }
 }
 
-/* Win and Loss Animations*/
 .result-flash {
     position: absolute;
     inset: 0;
@@ -307,7 +300,6 @@ main {
     animation: flashfade 1.2s ease-in-out forwards;
 }
 
-/* All recipe items must be selected, with no extra ingredients. */
 .cook-scene:has(#plate-done:checked):not(:has(.required-pick:not(:checked), .bad-pick:checked)) .flash-good {
     display: flex;
     animation: flashfade 1.2s ease-in-out forwards;
@@ -416,16 +408,26 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
     100% { bottom: -100px; opacity: 0; }
 }
 
-/* Result dialog */
 .verdict {
     display: none;
-    bottom: 15px;
-    animation: slide-in-bottom 0.5s ease-in-out 0.8s forwards;
+    bottom: -100px;
+    opacity: 0;
     z-index: 10;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 0 45px 0 15px;
+}
+
+#plate-done:checked ~ .cook-scene .verdict-lose {
+    display: flex;
+    animation: slide-in-bottom 0.5s ease-in-out 0.8s forwards;
+}
+
+.cook-scene:has(#plate-done:checked):not(:has(.required-pick:not(:checked), .bad-pick:checked)) .verdict-win {
+    display: flex;
+    animation: slide-in-bottom 0.5s ease-in-out 0.8s forwards;
 }
 
 @keyframes slide-in-bottom {
@@ -479,7 +481,6 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
     margin-bottom: 6px;
 }
 
-/* Food Grid*/
 .pantry-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -521,7 +522,6 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
     transition: opacity 0.25s ease;
 }
 
-/* Finish Button*/
 .serve-btn {
     background-color: #d90429;
     border: 1px solid #EF233C;
@@ -548,22 +548,6 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
     transform: scale(0);
     opacity: 0;
     pointer-events: none;
-}
-
-#plate-done:checked ~ .verdict-lose {
-    display: block;
-}
-
-#plate-done:checked ~ .verdict-win {
-    display: none;
-}
-
-.cook-scene:has(#plate-done:checked):not(:has(.required-pick:not(:checked), .bad-pick:checked)) .verdict-win {
-    display: block;
-}
-
-.cook-scene:has(#plate-done:checked):not(:has(.required-pick:not(:checked), .bad-pick:checked)) .verdict-lose {
-    display: none;
 }
 
 .go-btn {
@@ -610,8 +594,6 @@ body:has(#pick-wrong:checked) .table-wrong { opacity: 1; }
         transform: translateY(-5px) rotate(2deg);
     }
 }
-
-/* Each Next label checks the box for the following scene. */
 
 #go-taunt:checked ~ .board .stage-box .welcome-scene {
     display: none;
