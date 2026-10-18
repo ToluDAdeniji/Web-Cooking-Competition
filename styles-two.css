@@ -1,0 +1,952 @@
+/*backup*/
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+*, 
+*::before, 
+*::after {
+    box-sizing: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    background-color: #0b4f6c;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+}
+
+nav {
+    background-color: #d90429;
+    padding: 12px 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#nav-title, .nav-button {
+    background-color: #1a153b;
+    border: 1px solid #4a3f8a;
+    border-radius: 5px;
+    padding: 6px 12px;
+    display: inline-block;
+    font-size: 14px;
+}
+
+#nav-title {
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    display: inline-block;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    margin-left: 0px;
+}
+
+main {
+    padding: 10px;
+    width: 100%;
+    flex: 1;
+}
+
+/* Content Area */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    position: relative;
+}
+
+#start-enable,
+#scene-two-enable,
+#scene-three-enable,
+#scene-four-enable,
+#scene-five-enable,
+#scene-six-enable,
+#scene-seven-enable,
+#scene-eight-enable,
+#scene-nine-enable,
+#game-over-enable {
+    display: none;
+}
+
+.content-box {
+    border: 3px solid #d90429;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.content-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(backgrounds/kitchen.png);
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px);
+    z-index: -1;
+    border-radius: 17px;
+    transition: filter 0.3s ease;
+}
+
+.content-layout {
+    display: flex;
+    align-items: flex-start;
+    align-items: stretch;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#pocket_menu {
+  border: 3px solid #d90429;
+  border-radius: 20px;
+  background-image: url(backgrounds/menu.jpg);
+  background-size: 200px;
+  width: 500px;
+  height: 700px;
+  position: relative;
+  isolation: isolate;
+  flex-shrink: 0;
+}
+
+.menu_grid h2 {
+    text-align: center;
+}
+
+/*Contains the food and recipes in the Pocket_Menu boarder*/
+.menu_grid {
+    padding: 15px;
+}
+
+.menu_grid p {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* setting up the 2 x 2 matrix grid*/
+.menu_options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.menu_item {
+    height: 270px;
+    min-width: 0;
+    perspective: 1000px;
+}
+
+/*whenever hover over the card it will flip over*/
+.hover-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.7s ease;
+}
+
+/*allows for the card grid to rotate*/
+.menu_item:hover .hover-card,
+.menu_item:focus-within .hover-card {
+    transform: rotateY(180deg);
+}
+
+/* Making the Border for both sides*/
+.front-page,
+.back-page {
+    position: absolute;
+    inset: 0;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow-y: auto;
+}
+
+.front-page img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.front-page {
+    text-align: center;
+    margin-bottom: 0;
+    color: white;
+    background-image: url(backgrounds/menu.jpg);
+}
+
+.front-page h3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.back-page {
+    background-color: black;
+    transform: rotateY(180deg);
+}
+
+.back-page li {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.menu-info {
+    padding-left: 20px;
+    line-height: 1.5;
+}
+
+
+/*gameover boarder box*/
+.loser-box {
+    border: 3px solid #d90429;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.loser-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(backgrounds/homeless.png);
+    background-size: cover;
+    z-index: -1;
+    transition: filter 1 ease;
+}
+
+.loser-box .scene-one,
+.winner-box .scene-one,
+.winner-box .scene-two {
+    position: absolute;
+    inset: 0;
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/*Congradulation boarder box*/
+.winner-box {
+    border: 3px solid #d90429;
+    border-radius: 20px;
+    width: 800px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+
+.winner-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(backgrounds/first_place_trophy.png);
+    background-size: fixed;
+    z-index: -1;
+
+    
+}
+
+/*fixing bug where it skips dialog and multiple pocktes appear on screen*/
+.winner-box .scene-one {
+    display: block;
+}
+
+.winner-box .scene-two,
+.winner-box .game-over {
+    display: none;
+}
+
+
+/*hides previous text in dialog box*/
+.scene-one {
+    display: block;
+    position: absolute;
+    inset: 0;
+}
+
+.scene-one #narrative,
+.scene-one .walking-cat-chef {
+    transition: filter 0.3s ease;
+}
+
+.scene-one:not(:has(#start-enable:checked)) #narrative,
+.scene-one:not(:has(#start-enable:checked)) .walking-cat-chef {
+    filter: blur(6px);
+}
+
+/*prevents other scenes to collid*/
+.scene-two, 
+.scene-three,
+.scene-four,
+.scene-five,
+.scene-six,
+.scene-seven,
+.scene-eight,
+.scene-nine,
+.game-over {
+    display: none;
+    position: absolute;
+    inset: 0;
+}
+
+
+/* The cat Pocket */
+.scene-two .cat-chef,
+.scene-four .sad-cat-chef,
+.scene-five .sad-cat-chef,
+.scene-seven .cat-chef,
+.scene-eight .cat-chef,
+.scene-nine  .cat-chef{
+    position: absolute;
+}
+
+/* Exclusive to Congradulation*/
+.victory_cat {
+    position: absolute;
+    left: 286px;
+    top: 30px;
+    animation: doaflip 4s ease infinite
+}
+
+.troubled-cat-chef {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30px;
+}
+
+.homeless-cat-chef {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100px;
+    animation: crying 2s ease-in-out infinite;
+
+}
+
+.sad-cat-chef {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30px;
+    animation: crying 2s ease-in-out infinite;
+}
+
+.walking-cat-chef {
+    left: 286px;
+    top: 30px;
+}
+
+.cat-chef {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30px;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+/* Ensure images inside characters scale safely */
+.cat-chef img,
+.walking-cat-chef img,
+.sad-cat-chef img,
+.troubled-cat-chef img,
+.homeless-cat-chef img,
+.victory_cat {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.glove-pointer {
+    height: 30px; 
+    width: 32px;
+    position: absolute;
+    right: 190px; 
+    bottom: 85px;
+    z-index: 8;
+    animation: pointing 2s ease-in-out infinite;
+}
+
+.text_bubble img {
+    position: absolute;
+    height: 100px;
+    width: 140px;
+    left: 180px;
+    top: 100px;
+}
+
+.text_bubble p {
+    position: absolute;
+    left: 200px;
+    top: 120px;
+}
+
+.try-again img {
+    position: absolute;
+    align-items: centerS;
+    height: 300px;
+    width: 300px;
+    left: 245px;
+    top: -255px;
+    animation: slide 3s ease-in-out forwards;
+}
+
+/*Restart Screen fades in*/
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/*gameover logo*/
+@keyframes slide {
+    from {
+        top: -255px;
+    }
+
+    to {
+        top: -20px;
+    }
+}
+
+
+@keyframes pointing {
+    0% {
+        transform: rotate(202deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(202deg) translateY(-8px);
+    }
+
+    100% {
+        transform: rotate(202deg) translateY(0);
+    }
+
+}
+
+
+/*cat animations*/
+
+@keyframes doaflip {
+    0%, 100% {
+        transform: translateY(0) rotate(360deg);
+    }
+
+
+    25%{
+        transform: translateY(-35px) rotate(0deg) 
+    }
+
+    50% {
+        transform: translate(-35px) rotate(180deg);
+    }
+
+    75% {
+        transform: translateY(-15px) rotate(360deg);
+    }
+
+}
+
+@keyframes crying {
+    0% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    25% {
+        transform: translateX(-50%) translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(-50%) translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-50%) translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes walk {
+    0% {
+        transform: translateX(0);
+    }
+
+    80% {
+        transform: translateX(270px);
+    }
+
+    100% {
+        transform: translateX(270px);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-12px);
+    }
+}
+
+#narrative,
+.narrative {
+    background-color: #0b4f6c;
+    border: 2px solid #d90429;
+    border-radius: 15px;
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    max-width: 740px;
+    height: 65px;
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+#narrative p,
+.narrative p {
+    margin: 0;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.3;
+}
+
+
+#start-link {
+    position: absolute;
+    margin-top: 230px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 10;
+    text-decoration: none;
+}
+
+.start-button {
+    background-color: #d90429;
+    border: 2px solid #ef233c;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.next-button {
+    background-color: #d90429;
+    border: 1px solid #ef233c;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 4px 8px;
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    top: -10px;
+    z-index: 7;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.next-button:hover,
+.next-button-nav a:hover {
+    background-color: #de6472;
+    transform: scale(1.05);
+}
+
+/*Navigation button for the content box*/
+.next-button-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    right: 25px;
+    top: -10px;
+    background-color: transparent;
+    padding: 0;
+    width: auto;
+    margin: 0;
+    z-index: 7;
+}
+
+.next-button-nav a {
+    display: inline-block;
+    background-color: #d90429;
+    border: 1px solid #ef233c;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 4px 8px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.try-again .next-button-nav {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 20px;
+    top: 330px;
+    opacity: 0;
+    animation: fadein 1s ease-in-out 2.5s forwards;
+}
+
+.try-again .next-button-nav a{
+    width: 100px;
+    min-height: 45px;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+footer {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 13px;
+}
+
+/*index page*/
+#start-enable:checked ~ .content-box .scene-one #narrative,
+#start-enable:checked ~ .content-box .scene-one .walking-cat-chef{
+    filter: blur(0);
+}
+
+#start-enable:checked ~ .content-box::before {
+    filter: blur(0);
+}
+
+#start-enable:checked ~ #start-link {
+    display: none;
+}
+
+#start-enable:checked ~ .content-box .walking-cat-chef {
+    animation: walk 3s ease-in-out forwards;
+}
+
+/* changing scenes (I did try to put them all in one but it didn't work*/
+#scene-two-enable:checked ~ .content-box .scene-one,
+#scene-two-enable:checked ~ .winner-box .scene-one{
+    display: none;
+}
+
+#scene-two-enable:checked ~ .content-box .scene-two,
+#scene-two-enable:checked ~ .winner-box .scene-two{
+    display: block;
+}
+
+#scene-three-enable:checked ~ .content-box .scene-two,
+#scene-three-enable:checked ~ .winner-box .scene-two {
+    display: none;
+}
+
+#scene-three-enable:checked ~ .content-box .scene-three,
+#scene-three-enable:checked ~ .winner-box .scene-three {
+    display: block;
+}
+
+#scene-four-enable:checked ~ .content-box .scene-three {
+    display: none;
+}
+
+#scene-four-enable:checked ~ .content-box .scene-four{
+    display: block;
+}
+
+#scene-five-enable:checked ~ .content-box .scene-four {
+    display: none;
+}
+
+#scene-five-enable:checked ~ .content-box .scene-five{
+    display: block;
+}
+
+#scene-six-enable:checked ~ .content-box .scene-five {
+    display: none;
+}
+
+#scene-six-enable:checked ~ .content-box .scene-six{
+    display: block;
+}
+
+#scene-seven-enable:checked ~ .content-box .scene-six {
+    display: none;
+}
+
+#scene-seven-enable:checked ~ .content-box .scene-seven{
+    display: block;
+}
+
+#scene-eight-enable:checked ~ .content-box .scene-seven {
+    display: none;
+}
+
+#scene-eight-enable:checked ~ .content-box .scene-eight{
+    display: block;
+}
+
+#scene-nine-enable:checked ~ .content-box .scene-eight {
+    display: none;
+}
+
+#scene-nine-enable:checked ~ .content-box .scene-nine{
+    display: block;
+}
+
+/*Gameover page */
+
+#game-over-enable:checked ~ .loser-box .scene-one,
+#game-over-enable:checked ~ .winner-box .scene-two {
+    display: none;
+}
+
+#game-over-enable:checked ~.loser-box .game-over,
+#game-over-enable:checked ~ .winner-box .game-over {
+    display: block;
+}
+
+#game-over-enable:checked ~ .loser-box::before,
+#game-over-enable:checked ~ .winner-box::before {
+    filter: blur(8px);
+}
+
+#game-over-enable:checked ~ .loser-box .game-over .homeless-cat-chef,
+#game-over-enable:checked ~ .winner-box .game-over .victory_cat {
+    filter: blur(3px);
+    transition: filter 1s ease;
+}
+
+@media (max-width: 850px) {
+    .content-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px
+    }
+
+    .content-box, 
+    .loser-box {
+        height: 400px;
+    }
+
+    .winner-box {
+        width: 700px;
+    }
+    
+}
+
+@media (max-width: 480px), (max-height: 660px) {
+    main {
+        padding: 5px;
+    }
+    nav {
+        padding: 8px 10px;
+    }
+
+    .content-box, 
+    .loser-box {
+        height: 260px;
+        border-width: 2px;
+        border-radius: 12px;
+    }
+   
+    /*Since the Win Box is different from the others it will have a seprate one*/
+    .winner-box {
+        width: 409px;
+        height: 400px;
+    }
+
+    /*Menu*/
+    #pocket_menu {
+        width: 300px;
+    }
+
+    /*Postioning Pocket*/
+    .victory_cat {
+        position: absolute;
+        left: 190px;
+        top: 170px;
+    }
+    
+    .winner-box .cat-chef {
+        position: absolute;
+        top: 100px;
+    }
+
+    /*Fixing the text box and Pocket's position*/
+    .scene-one .homeless-cat-chef {
+        z-index: 2;
+    }
+
+    .homeless-cat-chef {
+        position: absolute;
+        top: 60px;
+    }
+
+    .scene-one .text_bubble {
+        position: absolute;
+        top: -10px;
+        left: -30px;
+        right:auto;
+        width: 100px;
+        transform: scale(0.8);
+        transform-origin: top left;
+        z-index: 1;
+    }
+
+    .text_bubble p {
+        position: absolute;
+        top: 110px;
+    }
+
+    /*fixing the game over logo and restart buttons*/
+    .try-again img {
+        position: absolute;
+        width: 180px;
+        height: auto;
+        max-width: 85%;
+        left: 50%;
+        margin-left: -90px;
+        top: -255px;
+        object-fit: contain;
+    }
+    
+    .try-again .next-button-nav {
+        position: absolute;
+        left: 50%;
+        right: auto;
+        top: 145px;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Scale down cat illustrations on small screens */
+    .cat-chef img,
+    .walking-cat-chef img,
+    .sad-cat-chef img,
+    .troubled-cat-chef img,
+    .homeless-cat-chef img,
+    .victory_cat img {
+        max-height: 150px;
+    }
+
+    .walking-cat-chef {
+        position: absolute;
+        top: 40px;
+        left: -90px ;
+    }
+    .cat-chef, 
+    .sad-cat-chef, 
+    .troubled-cat-chef {
+        top: 25px;
+    }
+
+    #narrative, 
+    .narrative {
+        height: 48px;
+        bottom: 6px;
+        left: 8px;
+        width: calc(100% - 16px);
+        padding: 0 10px;
+    }
+
+    #narrative p, .narrative p {
+        font-size: 12px;
+    }
+
+    .next-button {
+        font-size: 10px;
+        padding: 2px 4px;
+        right: 15px;
+        top: -10px;
+    }
+
+    .next-button-nav {
+        right: 15px;
+        top: -7px;
+        gap: 5px;
+    }
+
+    .next-button-nav a {
+        font-size: 10px;
+        padding: 2px 4px;
+    }
+
+    /*Fixing the Pointer's Size and positioning*/
+    .glove-pointer {
+        height: 28px;
+        width: 33px;
+        right: 120px; 
+        bottom: 65px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .cat-chef, 
+    .walking-cat-chef, 
+    .sad-cat-chef, 
+    .troubled-cat-chef,
+    .victory_cat, 
+    .glove-pointer {
+        animation: none !important;
+    }
+}
