@@ -83,6 +83,28 @@ main {
     overflow: hidden;
 }
 
+.cooking-meter {
+    display: none;
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+    right: 20px;
+    height: 10px;
+    background-color: #1a153b;
+    border: 1px solid #d90429;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.cooking-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #d90429;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
 .recipe-sheet {
     width: 100%;
     max-width: 350px;
@@ -318,7 +340,7 @@ main {
 }
 
 .talk-bubble {
-    background-color: #0b4f6c;
+    background: #0b4f6c;
     border: 2px solid #d90429;
     border-radius: 15px;
     width: calc(100% - 40px);
@@ -334,11 +356,12 @@ main {
     align-items: center;
     text-align: center;
     padding: 0 15px;
+    box-sizing: border-box;
     animation: bubble-slide-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 .talk-bubble p {
-    margin: 0px;
+    margin: 0;
     width: 100%;
     font-size: 13px;
     line-height: 1.3;
@@ -487,6 +510,14 @@ main {
     display: block;
 }
 
+#step-rules:checked ~ .cook-frame .cooking-meter {
+    display: block;
+}
+
+#step-pot-chosen:checked ~ .cook-frame .cooking-meter .cooking-bar {
+    width: 15%;
+}
+
 #step-pot-chosen:checked ~ .cook-frame .first-tool-scene { display: none !important; }
 
 #step-pot-chosen:checked ~ .cook-frame:has(#pot-pick:checked) .broth-scene { display: block; }
@@ -499,6 +530,10 @@ main {
 }
 
 #step-broth-done:checked ~ .cook-frame .broth-scene { display:none !important; }
+
+#step-broth-done:checked ~ .cook-frame .cooking-meter .cooking-bar {
+    width: 30%;
+}
 
 #step-broth-done:checked ~ .cook-frame:has(#ing-broth:checked):not(:has(.bad-ing:checked)) .pot-img.base-pot {
     display: none;
@@ -526,6 +561,10 @@ main {
     display: none !important;
 }
 
+#step-heat:checked ~ .cook-frame .cooking-meter .cooking-bar {
+    width: 45%;
+}
+
 #step-heat:checked ~ .cook-frame:has(#temp-high:checked) .second-tool-scene { display: block; }
 
 #step-heat:checked ~ .cook-frame:not(:has(#temp-high:checked)) .fail-scene { display: block; }
@@ -536,6 +575,10 @@ main {
 
 #step-board-chosen:checked ~ .cook-frame .second-tool-scene {
     display: none !important;
+}
+
+#step-board-chosen:checked ~ .cook-frame .cooking-meter .cooking-bar {
+    width: 60%;
 }
 
 #step-board-chosen:checked ~ .cook-frame:has(#board-pick2:checked) .meat-scene {
@@ -552,6 +595,10 @@ main {
     display: none !important;
 }
 
+#step-meat-done:checked ~ .cook-frame .cooking-meter .cooking-bar {
+    width: 70%;
+}
+
 #step-meat-done:checked ~ .cook-frame:has(#ing2-pork:checked):has(#ing2-bacon:checked):not(:has(.bad-ing-2:checked)) .cut-scene {
     display: block;
 }
@@ -566,6 +613,10 @@ main {
 
 #step-cut:checked ~ .cook-frame .cut-scene { display:none !important; }
 
+#step-cut:checked ~ .cook-frame .cooking-meter .cooking-bar {
+    width: 80%;
+}
+
 #step-cut:checked ~ .cook-frame:has(#cut-dice:checked) .season-scene { display:block; }
 
 #step-cut:checked ~ .cook-frame:not(:has(#cut-dice:checked)) .fail-scene
@@ -578,6 +629,10 @@ main {
 }
 
 #step-season-done:checked ~ .cook-frame .season-scene { display: none !important; }
+
+#step-season-done:checked ~ .cook-frame .cooking-meter .cooking-bar {
+    width: 85%;
+}
 
 #step-season-done:checked
     ~ .cook-frame:has(#ing3-paprika:checked):has(#ing3-garlic:checked):not(:has(.bad-ing-3:checked)) .decide-scene {
@@ -603,6 +658,10 @@ main {
 
 #step-veg-done:checked ~ .cook-frame .veg-scene { display:none !important; }
 
+#step-veg-done:checked ~ .cook-frame .cooking-meter .cooking-bar {
+    width: 90%;
+}
+
 #step-veg-done:checked ~ .cook-frame:has(#ing4-carrots:checked):not(:has(.bad-ing-4:checked)) .timer-scene {
     display: block;
 }
@@ -614,6 +673,14 @@ main {
 
 #step-timer:checked ~ .cook-frame .timer-scene { display: none !important; }
 
+#step-timer:checked ~ .cook-frame .cooking-meter .cooking-bar {
+    width: 100%;
+}
+
+#step-timer:checked ~ .cook-frame .cooking-meter {
+    display: none;
+}
+
 #step-timer:checked ~ .cook-frame:has(#dur-1hr:checked) .reaction-scene { display: block; }
 
 #step-timer:checked ~ .cook-frame:not(:has(#dur-1hr:checked)) .fail-scene {
@@ -622,6 +689,32 @@ main {
 
 #step-timer:checked ~ .cook-frame:not(:has(#dur-1hr:checked)) .timer-scene {
     display: none !important;
+}
+
+#step-pot-chosen:checked ~ .cook-frame:has(#pan-pick:checked) .cooking-meter,
+#step-pot-chosen:checked ~ .cook-frame:has(#wok-pick:checked) .cooking-meter,
+#step-pot-chosen:checked ~ .cook-frame:has(#board-pick:checked) .cooking-meter,
+#step-pot-chosen:checked ~ .cook-frame:not(:has(input[name="tool"]:checked)) .cooking-meter,
+#step-broth-done:checked ~ .cook-frame:not(:has(#ing-broth:checked)) .cooking-meter,
+#step-broth-done:checked ~ .cook-frame:has(.bad-ing:checked) .cooking-meter,
+#step-heat:checked ~ .cook-frame:not(:has(#temp-high:checked)) .cooking-meter,
+#step-board-chosen:checked ~ .cook-frame:has(#pan-pick2:checked) .cooking-meter,
+#step-board-chosen:checked ~ .cook-frame:has(#pot-pick2:checked) .cooking-meter,
+#step-board-chosen:checked ~ .cook-frame:has(#wok-pick2:checked) .cooking-meter,
+#step-meat-done:checked ~ .cook-frame:not(:has(#ing2-pork:checked)):not(:has(#ing2-bacon:checked)) .cooking-meter,
+#step-meat-done:checked ~ .cook-frame:not(:has(#ing2-pork:checked)) .cooking-meter,
+#step-meat-done:checked ~ .cook-frame:not(:has(#ing2-bacon:checked)) .cooking-meter,
+#step-meat-done:checked ~ .cook-frame:has(.bad-ing-2:checked) .cooking-meter,
+#step-cut:checked ~ .cook-frame:not(:has(#cut-dice:checked)) .cooking-meter,
+#step-season-done:checked ~ .cook-frame:not(:has(#ing3-paprika:checked)):not(:has(#ing3-garlic:checked)) .cooking-meter,
+#step-season-done:checked ~ .cook-frame:not(:has(#ing3-paprika:checked)) .cooking-meter,
+#step-season-done:checked ~ .cook-frame:not(:has(#ing3-garlic:checked)) .cooking-meter,
+#step-season-done:checked ~ .cook-frame:has(.bad-ing-3:checked) .cooking-meter,
+#step-action:checked ~ .cook-frame:not(:has(#action-add:checked)) .cooking-meter,
+#step-veg-done:checked ~ .cook-frame:not(:has(#ing4-carrots:checked)) .cooking-meter,
+#step-veg-done:checked ~ .cook-frame:has(.bad-ing-4:checked) .cooking-meter,
+#step-timer:checked ~ .cook-frame:not(:has(#dur-1hr:checked)) .cooking-meter {
+    display: none;
 }
 
 #step-reaction:checked ~ .cook-frame .reaction-scene { display: none !important; }
@@ -798,4 +891,28 @@ footer { text-align: center; margin: 20px 0; font-size: 13px; }
     .talk-bubble {
         animation: none !important;
     }
+}
+
+
+@keyframes pot-simmer {
+    from { background-image:url('items/pot-broth-anim-1.png'); }
+
+    33.33% { background-image: url('items/pot-broth-anim-2.png'); }
+
+    66.66% { background-image: url('items/pot-broth-anim-3.png'); }
+}
+
+.simmering-pot {
+    position: absolute;
+    width: 105px;
+    height: 105px;
+    bottom: 75px;
+    left: 55px;
+    z-index: 3;
+    display: block;
+    opacity: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: pot-simmer .6s steps(1) infinite;
 }

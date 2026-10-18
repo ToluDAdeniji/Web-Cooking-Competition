@@ -1,0 +1,236 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #0b4f6c;
+    color: white;
+    font-family: Georgia, 'Times New Roman', serif;
+    display: flex;
+    flex-direction: column;
+}
+
+
+nav {
+    background-color: #d90429;
+    padding: 12px 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#nav-title, .nav-button {
+    background-color: #1a153b;
+    border: 1px solid #4a3f8a;
+    border-radius: 5px;
+    padding: 6px 12px;
+    display: inline-block;
+    font-size: 14px;
+}
+
+#nav-title {
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: inline-block;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    margin-left: 0px;
+}
+
+main {
+    padding: 10px;
+    width: 100%;
+    flex: 1;
+}
+
+/* Grid */
+.grid-layout {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.about-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Card Styles */
+.card {
+    background-color: #013e58;
+    border: 3px solid #d90429;
+    border-radius: 20px;
+    width: 380px;
+    min-height: 540px; 
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow-y: auto;
+}
+
+.image {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #d90429;
+    border-radius: 12px;
+    background-color: #1a153b;
+    overflow: hidden;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.profile h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #fff;
+}
+
+.bio {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #dfdfdf;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.profile h3 {
+    font-size: 15px;
+    color: #ef233c;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #d90429;
+    padding-bottom: 4px;
+    width: 100%;
+    text-align: left;
+}
+
+.hobbies {
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.5;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    color: white;
+}
+
+.connect {
+    width: 100%;
+    margin-top: auto; 
+    text-align: left;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.links a {
+    background-color: #d90429;
+    border: 1px solid #ef233c;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 12px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.links a:hover {
+    background-color: #de6472;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 13px;
+}
+
+.nav-button:hover {
+    background-color: #2b2360;
+}
+
+.nav-link:focus-visible .nav-button,
+.links a:focus-visible {
+    outline: 2px solid #ffd166;
+    outline-offset: 2px;
+}
+
+/* Mobile */
+@media (max-width: 480px), (max-height: 660px) {
+    main {
+        padding: 5px;
+    }
+    nav {
+        padding: 8px 10px;
+    }
+    .about-container {
+        gap: 15px;
+    }
+    .card {
+        width: 100%;
+        max-width: 320px;
+        min-height: auto;
+        padding: 15px;
+    }
+    .image {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 10px;
+    }
+    .profile h2 {
+        font-size: 18px;
+    }
+    .bio, .hobbies {
+        font-size: 11.5px;
+    }
+    .profile h3 {
+        font-size: 13px;
+    }
+    .links a {
+        font-size: 10.5px;
+        padding: 4px 8px;
+    }
+}
