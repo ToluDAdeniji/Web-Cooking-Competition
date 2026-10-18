@@ -340,7 +340,7 @@ main {
 }
 
 .talk-bubble {
-    background-color: #0b4f6c;
+    background: #0b4f6c;
     border: 2px solid #d90429;
     border-radius: 15px;
     width: calc(100% - 40px);
@@ -356,11 +356,12 @@ main {
     align-items: center;
     text-align: center;
     padding: 0 15px;
+    box-sizing: border-box;
     animation: bubble-slide-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 .talk-bubble p {
-    margin: 0px;
+    margin: 0;
     width: 100%;
     font-size: 13px;
     line-height: 1.3;
@@ -688,6 +689,32 @@ main {
 
 #step-timer:checked ~ .cook-frame:not(:has(#dur-1hr:checked)) .timer-scene {
     display: none !important;
+}
+
+#step-pot-chosen:checked ~ .cook-frame:has(#pan-pick:checked) .cooking-meter,
+#step-pot-chosen:checked ~ .cook-frame:has(#wok-pick:checked) .cooking-meter,
+#step-pot-chosen:checked ~ .cook-frame:has(#board-pick:checked) .cooking-meter,
+#step-pot-chosen:checked ~ .cook-frame:not(:has(input[name="tool"]:checked)) .cooking-meter,
+#step-broth-done:checked ~ .cook-frame:not(:has(#ing-broth:checked)) .cooking-meter,
+#step-broth-done:checked ~ .cook-frame:has(.bad-ing:checked) .cooking-meter,
+#step-heat:checked ~ .cook-frame:not(:has(#temp-high:checked)) .cooking-meter,
+#step-board-chosen:checked ~ .cook-frame:has(#pan-pick2:checked) .cooking-meter,
+#step-board-chosen:checked ~ .cook-frame:has(#pot-pick2:checked) .cooking-meter,
+#step-board-chosen:checked ~ .cook-frame:has(#wok-pick2:checked) .cooking-meter,
+#step-meat-done:checked ~ .cook-frame:not(:has(#ing2-pork:checked)):not(:has(#ing2-bacon:checked)) .cooking-meter,
+#step-meat-done:checked ~ .cook-frame:not(:has(#ing2-pork:checked)) .cooking-meter,
+#step-meat-done:checked ~ .cook-frame:not(:has(#ing2-bacon:checked)) .cooking-meter,
+#step-meat-done:checked ~ .cook-frame:has(.bad-ing-2:checked) .cooking-meter,
+#step-cut:checked ~ .cook-frame:not(:has(#cut-dice:checked)) .cooking-meter,
+#step-season-done:checked ~ .cook-frame:not(:has(#ing3-paprika:checked)):not(:has(#ing3-garlic:checked)) .cooking-meter,
+#step-season-done:checked ~ .cook-frame:not(:has(#ing3-paprika:checked)) .cooking-meter,
+#step-season-done:checked ~ .cook-frame:not(:has(#ing3-garlic:checked)) .cooking-meter,
+#step-season-done:checked ~ .cook-frame:has(.bad-ing-3:checked) .cooking-meter,
+#step-action:checked ~ .cook-frame:not(:has(#action-add:checked)) .cooking-meter,
+#step-veg-done:checked ~ .cook-frame:not(:has(#ing4-carrots:checked)) .cooking-meter,
+#step-veg-done:checked ~ .cook-frame:has(.bad-ing-4:checked) .cooking-meter,
+#step-timer:checked ~ .cook-frame:not(:has(#dur-1hr:checked)) .cooking-meter {
+    display: none;
 }
 
 #step-reaction:checked ~ .cook-frame .reaction-scene { display: none !important; }
